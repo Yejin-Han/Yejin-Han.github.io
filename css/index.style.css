@@ -1,0 +1,139 @@
+@import "reset.css";
+html,
+body {
+  width: 100vw;
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  background-color: #fae199;
+}
+
+@-webkit-keyframes rotate360 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate360 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.innerbox {
+  width: 80%;
+  margin: 0 auto;
+}
+
+section:not(:first-of-type) {
+  margin: 20vh 0;
+}
+
+#header {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10000;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px 0;
+  box-sizing: border-box;
+}
+#header h1 {
+  width: 4.375rem;
+  height: 4.375rem;
+}
+#header h1 a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-indent: -9999px;
+  transform: rotate(0deg);
+  background: url("../img/logo.png") no-repeat;
+  background-size: cover;
+}
+#header h1:hover > a {
+  -webkit-animation: rotate360 5s linear 0s both infinite;
+          animation: rotate360 5s linear 0s both infinite;
+}
+#header ul {
+  display: flex;
+}
+#header ul li {
+  position: relative;
+  margin-left: 15px;
+}
+#header ul li:first-child {
+  margin-left: 0;
+}
+#header ul li:before {
+  display: block;
+  content: "/";
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-55%);
+}
+#header ul li:last-child:before {
+  display: none;
+}
+
+#main_visual {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px dotted #a0a0a0;
+}
+#main_visual .text_wrap {
+  text-align: center;
+  font-size: 6.875rem;
+  font-weight: normal;
+  letter-spacing: -2px;
+}
+#main_visual .text_wrap .strong {
+  font-weight: bold;
+  position: relative;
+  top: -0.625rem;
+}
+
+#about .innerbox {
+  display: flex;
+  justify-content: space-between;
+  gap: 3%;
+}
+#about .content_left {
+  width: 30%;
+  background: #fff;
+}
+#about .content_right {
+  text-align: right;
+  width: 70%;
+}
+#about .sect_title {
+  font-size: 2rem;
+  letter-spacing: -1px;
+  display: inline-block;
+  padding: 3rem 5rem 2rem;
+  background-image: url("../img/quote1.png"), url("../img/quote2.png");
+  background-repeat: no-repeat;
+  background-size: 4rem auto;
+  background-position: left top, right top;
+}
+#about .sect_title span {
+  position: relative;
+  top: -0.75rem;
+}
