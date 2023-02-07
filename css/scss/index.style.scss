@@ -1,4 +1,7 @@
-@import "reset.css";
+@import "default.css";
+
+$mainColor: #f7e2a7;
+$pointColor: #f7788a;
 
 html,
 body {
@@ -7,7 +10,8 @@ body {
 body {
   position: relative;
   overflow-x: hidden;
-  background-color: #fae199;
+  background-color: $mainColor;
+  color: #222;
 }
 @keyframes rotate360 {
   0% {
@@ -58,7 +62,7 @@ section:not(:first-of-type) {
       &:first-child {
         margin-left: 0;
       }
-      &:before {
+      &::before {
         display: block;
         content: "/";
         position: absolute;
@@ -66,8 +70,11 @@ section:not(:first-of-type) {
         top: 50%;
         transform: translateY(-55%);
       }
-      &:last-child:before {
+      &:last-child::before {
         display: none;
+      }
+      a {
+        color: #222;
       }
     }
   }
@@ -86,41 +93,103 @@ section:not(:first-of-type) {
   .text_wrap {
     text-align: center;
     font-size: 6.875rem;
-    font-weight: normal;
     letter-spacing: -2px;
-    .strong {
-      font-weight: bold;
-      position: relative;
-      top: -0.625rem;
+    .heading {
+      font-weight: 400;
+      .strong {
+        font-weight: 700;
+        position: relative;
+        top: -0.625rem;
+        color: $pointColor;
+      }
     }
   }
 }
 #about {
-  .innerbox {
+  .introduction {
     display: flex;
     justify-content: space-between;
     gap: 3%;
+    margin-bottom: 6rem;
   }
   .content_left {
     width: 30%;
     background: #fff;
   }
   .content_right {
-    text-align: right;
     width: 70%;
   }
   .sect_title {
-    font-size: 2rem;
+    font-size: 2.2rem;
     letter-spacing: -1px;
     display: inline-block;
     padding: 3rem 5rem 2rem;
     background-image: url("../img/quote1.png"), url("../img/quote2.png");
     background-repeat: no-repeat;
-    background-size: 4rem auto;
+    background-size: 3.5rem auto;
     background-position: left top, right top;
     span {
       position: relative;
       top: -0.75rem;
+    }
+  }
+  .history {
+    margin-top: 6rem;
+    li {
+      margin: 0 5rem 0 2rem;
+      padding: 0 0 4rem 3rem;
+      border-left: 1px solid #222;
+      position: relative;
+      &:last-child {
+        padding-bottom: 2rem;
+      }
+      &::before {
+        display: block;
+        content: "";
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid #222;
+        position: absolute;
+        left: -0.35rem;
+        top: 0;
+      }
+      &::after {
+        display: block;
+        content: "";
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        border: 0;
+        position: absolute;
+        left: 0;
+        top: 0.4rem;
+        transform: translate(-50%, -50%);
+        transition: all 0.2s;
+      }
+      &:hover::after {
+        width: 1.4rem;
+        height: 1.4rem;
+        border: 2px solid $pointColor;
+      }
+      h4 {
+        font-size: 1.2rem;
+        margin-bottom: 0.6rem;
+      }
+      span {
+        color: #454545;
+      }
+      p {
+        font-size: 1.1rem;
+        margin-top: 1.3rem;
+      }
+    }
+  }
+  .skills {
+    padding-top: 8rem;
+    h3 {
+      font-size: 10rem;
     }
   }
 }
