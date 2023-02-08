@@ -7,8 +7,12 @@ body {
 body {
   position: relative;
   overflow-x: hidden;
-  background-color: #f7e2a7;
   color: #222;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
 }
 
 @-webkit-keyframes rotate360 {
@@ -100,6 +104,7 @@ section:not(:first-of-type) {
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+  background-color: #f7e2a7;
   border-bottom: 1px dotted #a0a0a0;
 }
 #main_visual .text_wrap {
@@ -117,6 +122,11 @@ section:not(:first-of-type) {
   color: #f7788a;
 }
 
+#about {
+  margin: 0;
+  padding: 20vh 0;
+  background-image: linear-gradient(180deg, #f7e2a7 0%, rgba(247, 226, 167, 0) 25%, rgba(255, 255, 255, 0) 100%);
+}
 #about .introduction {
   display: flex;
   justify-content: space-between;
@@ -126,6 +136,7 @@ section:not(:first-of-type) {
 #about .content_left {
   width: 30%;
   background: #fff;
+  border: 1px solid #222;
 }
 #about .content_right {
   width: 70%;
@@ -145,7 +156,7 @@ section:not(:first-of-type) {
   top: -0.75rem;
 }
 #about .history {
-  margin-top: 6rem;
+  margin-top: 8rem;
 }
 #about .history li {
   margin: 0 5rem 0 2rem;
@@ -167,6 +178,7 @@ section:not(:first-of-type) {
   position: absolute;
   left: -0.35rem;
   top: 0;
+  z-index: 10;
 }
 #about .history li::after {
   display: block;
@@ -182,8 +194,8 @@ section:not(:first-of-type) {
   transition: all 0.2s;
 }
 #about .history li:hover::after {
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border: 2px solid #f7788a;
 }
 #about .history li h4 {
@@ -197,9 +209,75 @@ section:not(:first-of-type) {
   font-size: 1.1rem;
   margin-top: 1.3rem;
 }
-#about .skills {
-  padding-top: 8rem;
-}
 #about .skills h3 {
+  margin: 20rem 0 10rem;
   font-size: 10rem;
+}
+#about .skills .icons {
+  width: 100%;
+  height: calc(100vh - 8rem);
+  position: relative;
+}
+#about .skills .icons .ico {
+  height: auto;
+  position: absolute;
+}
+#about .skills .icons .ico img {
+  width: 100%;
+  height: auto;
+}
+#about .skills .icons .i1 {
+  width: 9.375rem;
+  left: 35%;
+  top: 30%;
+}
+#about .skills .icons .i2 {
+  width: 9.375rem;
+  left: 55%;
+  top: 20%;
+}
+#about .skills .icons .i3 {
+  width: 9.375rem;
+  left: 48%;
+  top: 50%;
+}
+#about .skills .icons .i4 {
+  width: 6.125rem;
+  left: 32%;
+  top: 70%;
+}
+#about .skills .icons .i5 {
+  width: 5.625rem;
+  left: 72%;
+  top: 40%;
+}
+#about .skills .icons .i6 {
+  width: 8.125rem;
+  left: 68%;
+  top: 70%;
+}
+#about .skills .icons .i7 {
+  width: 5.625rem;
+  left: 80%;
+  top: 15%;
+}
+#about .skills .icons .i8 {
+  width: 3.75rem;
+  left: 88%;
+  top: 50%;
+}
+#about .skills .icons .i9 {
+  width: 5.625rem;
+  left: 17%;
+  top: 20%;
+}
+#about .skills .icons .i10 {
+  width: 3.125rem;
+  left: 8%;
+  top: 32%;
+}
+#about .skills .icons .i11 {
+  width: 4.375rem;
+  left: 15%;
+  top: 60%;
 }
