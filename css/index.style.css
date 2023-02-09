@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import "default.css";
 html,
 body {
@@ -8,11 +9,40 @@ body {
   position: relative;
   overflow-x: hidden;
   color: #222;
+  cursor: none;
 }
 
 img {
   -webkit-user-drag: none;
-  user-drag: none;
+}
+
+h2,
+h3 {
+  font-family: "Libre Baskerville", serif;
+}
+
+.cursor {
+  position: absolute;
+  z-index: 10000;
+}
+.cursor span {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  position: absolute;
+  transition: all 0.3s;
+}
+.cursor span.real {
+  z-index: 10001;
+  background-color: #f7788a;
+  mix-blend-mode: difference;
+}
+
+.cursor.active span {
+  width: 6.25rem;
+  height: 6.25rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 @-webkit-keyframes rotate360 {
@@ -37,16 +67,12 @@ img {
   margin: 0 auto;
 }
 
-section:not(:first-of-type) {
-  margin: 20vh 0;
-}
-
 #header {
   width: 100%;
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 10000;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   padding: 10px 20px 0;
@@ -109,22 +135,24 @@ section:not(:first-of-type) {
 }
 #main_visual .text_wrap {
   text-align: center;
-  font-size: 6.875rem;
   letter-spacing: -2px;
 }
 #main_visual .text_wrap .heading {
   font-weight: 400;
+  font-size: 9rem;
+}
+#main_visual .text_wrap .heading.bottom {
+  font-size: 11rem;
 }
 #main_visual .text_wrap .heading .strong {
+  font-size: 12rem;
   font-weight: 700;
-  position: relative;
-  top: -0.625rem;
   color: #f7788a;
 }
 
 #about {
   margin: 0;
-  padding: 20vh 0;
+  padding-top: 20vh;
   background-image: linear-gradient(180deg, #f7e2a7 0%, rgba(247, 226, 167, 0) 25%, rgba(255, 255, 255, 0) 100%);
 }
 #about .introduction {
@@ -142,6 +170,7 @@ section:not(:first-of-type) {
   width: 70%;
 }
 #about .sect_title {
+  font-family: "Pretendard Variable", "맑은 고딕", sans-serif;
   font-size: 2.2rem;
   letter-spacing: -1px;
   display: inline-block;
@@ -210,8 +239,8 @@ section:not(:first-of-type) {
   margin-top: 1.3rem;
 }
 #about .skills h3 {
-  margin: 20rem 0 10rem;
-  font-size: 10rem;
+  margin: 20rem 0 2rem;
+  font-size: 8rem;
 }
 #about .skills .icons {
   width: 100%;
@@ -239,31 +268,31 @@ section:not(:first-of-type) {
 #about .skills .icons .i3 {
   width: 9.375rem;
   left: 48%;
-  top: 50%;
+  top: 55%;
 }
 #about .skills .icons .i4 {
   width: 6.125rem;
-  left: 32%;
-  top: 70%;
+  left: 30%;
+  top: 80%;
 }
 #about .skills .icons .i5 {
   width: 5.625rem;
-  left: 72%;
+  left: 78%;
   top: 40%;
 }
 #about .skills .icons .i6 {
-  width: 8.125rem;
+  width: 8.75rem;
   left: 68%;
-  top: 70%;
+  top: 85%;
 }
 #about .skills .icons .i7 {
   width: 5.625rem;
   left: 80%;
-  top: 15%;
+  top: 5%;
 }
 #about .skills .icons .i8 {
   width: 3.75rem;
-  left: 88%;
+  left: 92%;
   top: 50%;
 }
 #about .skills .icons .i9 {
@@ -280,4 +309,78 @@ section:not(:first-of-type) {
   width: 4.375rem;
   left: 15%;
   top: 60%;
+}
+
+#project {
+  margin-top: 30vh;
+  background-color: #fff;
+  transition: background-color 0.6s ease;
+}
+#project.blur {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(167, 239, 247, 0) 75%, #a7eff7 100%);
+}
+#project .wave {
+  /* font다르게 */
+  font-size: 2rem;
+  transition: color 0.6s ease;
+}
+#project h2 {
+  margin-top: 20vh;
+  font-size: 10rem;
+  transition: color 0.6s ease;
+}
+#project .projects {
+  margin-top: 10vh;
+  padding-bottom: 50vh;
+}
+#project .projects li {
+  width: 80%;
+  height: 10rem;
+  line-height: 10rem;
+  margin-left: auto;
+  margin-right: 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f7788a;
+  position: relative;
+}
+#project .projects li h4 {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-left: 3%;
+  font-weight: 900;
+  font-size: 2rem;
+}
+#project .projects li h4.main-text {
+  color: #fff;
+  mix-blend-mode: difference;
+  z-index: 10005;
+}
+#project .projects li h4::-moz-selection {
+  background: none;
+}
+#project .projects li h4::selection {
+  background: none;
+}
+#project .contents {
+  display: none;
+}
+
+#contact {
+  width: 100vw;
+  height: 43.75rem;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  background: url("../img/contact_bg.png") no-repeat center bottom;
+  background-color: #a7eff7;
+  background-size: cover;
+  transition: background-color 0.6s ease;
+}
+
+#footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
 }

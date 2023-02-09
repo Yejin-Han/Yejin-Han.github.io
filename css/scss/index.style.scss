@@ -1,6 +1,7 @@
 @import "default.css";
 
 $mainColor: #f7e2a7;
+$mainColor2: #a7eff7;
 $pointColor: #f7788a;
 
 @mixin setLocation($width, $left, $top) {
@@ -17,11 +18,41 @@ body {
   position: relative;
   overflow-x: hidden;
   color: #222;
+  cursor: none;
 }
 img {
   -webkit-user-drag: none;
-  user-drag: none;
 }
+h2,
+h3 {
+  font-family: "Libre Baskerville", serif;
+}
+
+.cursor {
+  position: absolute;
+  z-index: 10000;
+  span {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    position: absolute;
+    transition: all 0.3s;
+    &.real {
+      z-index: 10001;
+      background-color: $pointColor;
+      mix-blend-mode: difference;
+    }
+  }
+}
+.cursor.active {
+  span {
+    width: 6.25rem;
+    height: 6.25rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
 @keyframes rotate360 {
   0% {
     transform: rotate(0deg);
@@ -34,15 +65,12 @@ img {
   width: 80%;
   margin: 0 auto;
 }
-section:not(:first-of-type) {
-  margin: 20vh 0;
-}
 #header {
   width: 100%;
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 10000;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   padding: 10px 20px 0;
@@ -102,14 +130,16 @@ section:not(:first-of-type) {
   border-bottom: 1px dotted #a0a0a0;
   .text_wrap {
     text-align: center;
-    font-size: 6.875rem;
     letter-spacing: -2px;
     .heading {
       font-weight: 400;
+      font-size: 9rem;
+      &.bottom {
+        font-size: 11rem;
+      }
       .strong {
+        font-size: 12rem;
         font-weight: 700;
-        position: relative;
-        top: -0.625rem;
         color: $pointColor;
       }
     }
@@ -117,7 +147,7 @@ section:not(:first-of-type) {
 }
 #about {
   margin: 0;
-  padding: 20vh 0;
+  padding-top: 20vh;
   background-image: linear-gradient(
     180deg,
     $mainColor 0%,
@@ -139,6 +169,7 @@ section:not(:first-of-type) {
     width: 70%;
   }
   .sect_title {
+    font-family: "Pretendard Variable", "맑은 고딕", sans-serif;
     font-size: 2.2rem;
     letter-spacing: -1px;
     display: inline-block;
@@ -209,8 +240,8 @@ section:not(:first-of-type) {
   .skills {
     //padding-top: 8rem;
     h3 {
-      margin: 20rem 0 10rem;
-      font-size: 10rem;
+      margin: 20rem 0 2rem;
+      font-size: 8rem;
     }
     .icons {
       width: 100%;
@@ -231,22 +262,22 @@ section:not(:first-of-type) {
         @include setLocation(9.375rem, 55%, 20%);
       }
       .i3 {
-        @include setLocation(9.375rem, 48%, 50%);
+        @include setLocation(9.375rem, 48%, 55%);
       }
       .i4 {
-        @include setLocation(6.125rem, 32%, 70%);
+        @include setLocation(6.125rem, 30%, 80%);
       }
       .i5 {
-        @include setLocation(5.625rem, 72%, 40%);
+        @include setLocation(5.625rem, 78%, 40%);
       }
       .i6 {
-        @include setLocation(8.125rem, 68%, 70%);
+        @include setLocation(8.75rem, 68%, 85%);
       }
       .i7 {
-        @include setLocation(5.625rem, 80%, 15%);
+        @include setLocation(5.625rem, 80%, 5%);
       }
       .i8 {
-        @include setLocation(3.75rem, 88%, 50%);
+        @include setLocation(3.75rem, 92%, 50%);
       }
       .i9 {
         @include setLocation(5.625rem, 17%, 20%);
@@ -259,6 +290,79 @@ section:not(:first-of-type) {
       }
     }
   }
+}
+#project {
+  margin-top: 30vh;
+  background-color: #fff;
+  transition: background-color 0.6s ease;
+  &.blur {
+    background-image: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(167, 239, 247, 0) 75%,
+      $mainColor2 100%
+    );
+  }
+  .wave {
+    /* font다르게 */
+    font-size: 2rem;
+    transition: color 0.6s ease;
+  }
+  h2 {
+    margin-top: 20vh;
+    font-size: 10rem;
+    transition: color 0.6s ease;
+  }
+  .projects {
+    margin-top: 10vh;
+    padding-bottom: 50vh;
+    li {
+      width: 80%;
+      height: 10rem;
+      line-height: 10rem;
+      margin-left: auto;
+      margin-right: 0;
+      box-sizing: border-box;
+      border-bottom: 1px solid $pointColor;
+      position: relative;
+      h4 {
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding-left: 3%;
+        font-weight: 900;
+        font-size: 2rem;
+        &.main-text {
+          color: #fff;
+          mix-blend-mode: difference;
+          z-index: 10005;
+        }
+        &::selection {
+          background: none;
+        }
+      }
+    }
+  }
+  .contents {
+    display: none;
+  }
+}
+#contact {
+  width: 100vw;
+  height: 43.75rem;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  background: url("../img/contact_bg.png") no-repeat center bottom;
+  background-color: $mainColor2;
+  background-size: cover;
+  transition: background-color 0.6s ease;
+}
+#footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
 }
 
 @media screen and (min-width: 1025px) {
