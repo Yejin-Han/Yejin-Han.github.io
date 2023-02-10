@@ -1,8 +1,15 @@
 @import "default.css";
 
 $mainColor: #f7e2a7;
-$mainColor2: #a7eff7;
+/* $mainColor2: #d35d22; */
 $pointColor: #f7788a;
+$contactColor: #fcf2d6;
+
+$blurSize1: clamp(160px, 26vw, 26vw);
+$blurSize2: clamp(140px, 15vw, 15vw);
+$blurSize3: clamp(100px, 10vw, 10vw);
+$blurAmount: clamp(40px, 5vw, 90px);
+$blurAmount2: clamp(30px, 4.25vw, 67px);
 
 @mixin setLocation($width, $left, $top) {
   width: $width;
@@ -19,6 +26,23 @@ body {
   overflow-x: hidden;
   color: #222;
   cursor: none;
+  transition: background 0.6s ease;
+  /* &.blur {
+    background-image: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(167, 239, 247, 0) 70%,
+      $contactColor 100%
+    );
+  } */
+  &.default {
+    background-image: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(252, 242, 214, 0) 75%,
+      $contactColor 100%
+    );
+  }
 }
 img {
   -webkit-user-drag: none;
@@ -29,14 +53,14 @@ h3 {
 }
 
 .cursor {
-  position: absolute;
+  position: fixed;
+  pointer-events: none;
   z-index: 10000;
   span {
     display: block;
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 50%;
-    position: absolute;
     transition: all 0.3s;
     &.real {
       z-index: 10001;
@@ -293,16 +317,6 @@ h3 {
 }
 #project {
   margin-top: 30vh;
-  background-color: #fff;
-  transition: background-color 0.6s ease;
-  &.blur {
-    background-image: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(167, 239, 247, 0) 75%,
-      $mainColor2 100%
-    );
-  }
   .wave {
     /* font다르게 */
     font-size: 2rem;
@@ -350,14 +364,40 @@ h3 {
 }
 #contact {
   width: 100vw;
-  height: 43.75rem;
+  height: 50rem;
+  box-sizing: border-box;
+  padding: 5vw;
   position: relative;
   left: 0;
   bottom: 0;
-  background: url("../img/contact_bg.png") no-repeat center bottom;
-  background-color: $mainColor2;
-  background-size: cover;
-  transition: background-color 0.6s ease;
+  overflow: hidden;
+  .blur {
+    position: absolute;
+    border-right: 900px;
+    background: lighten($pointColor, 10%);
+    &:nth-of-type(4) {
+      filter: blur($blurAmount);
+      width: $blurSize1;
+      height: calc($blurSize1 * 0.9);
+      z-index: 100;
+    }
+    &:nth-of-type(2) {
+      filter: blur($blurAmount) hue-rotate(135deg) brightness(1.3);
+      height: $blurSize2;
+      width: calc($blurSize2 * 0.75);
+      top: 20vh;
+      right: 20vh;
+      z-index: 101;
+    }
+    &:nth-of-type(3) {
+      filter: blur($blurAmount2) hue-rotate(-135deg);
+      height: $blurSize3;
+      width: $blurSize3;
+      bottom: 20vh;
+      left: 20vw;
+      z-index: 102;
+    }
+  }
 }
 #footer {
   position: absolute;
