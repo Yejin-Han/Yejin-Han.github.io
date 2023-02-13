@@ -25,6 +25,7 @@ body {
   position: relative;
   overflow-x: hidden;
   color: #222;
+  font-family: "Pretendard Variable", "맑은 고딕", sans-serif;
   cursor: none;
   transition: background 0.6s ease;
   /* &.blur {
@@ -50,6 +51,21 @@ img {
 h2,
 h3 {
   font-family: "Libre Baskerville", serif;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+body::-webkit-scrollbar-thumb {
+  height: 10%;
+  background: $pointColor;
+  border-radius: 10px;
+}
+body::-webkit-scrollbar-track {
+  background: #fff;
+}
+::selection {
+  background: #a7b8d8;
 }
 
 .cursor {
@@ -274,6 +290,9 @@ h3 {
       .ico {
         height: auto;
         position: absolute;
+        transform: perspective(600px) rotateX(0deg) rotateY(0deg);
+        transform-style: preserve-3d;
+        will-change: transform;
         img {
           width: 100%;
           height: auto;
@@ -330,21 +349,21 @@ h3 {
   .projects {
     margin-top: 10vh;
     padding-bottom: 50vh;
-    li {
+    > ul > li {
       width: 80%;
-      height: 10rem;
-      line-height: 10rem;
       margin-left: auto;
       margin-right: 0;
       box-sizing: border-box;
-      border-bottom: 1px solid $pointColor;
       position: relative;
+      border-bottom: 1px solid $pointColor;
       h4 {
         display: inline-block;
-        position: absolute;
+        position: relative;
+        z-index: 100;
         left: 0;
         top: 0;
-        padding-left: 3%;
+        padding: 4rem 3%;
+        box-sizing: border-box;
         font-weight: 900;
         font-size: 2rem;
         &.main-text {
@@ -356,10 +375,66 @@ h3 {
           background: none;
         }
       }
+      .contents {
+        position: relative;
+        top: -2rem;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        padding: 0 3%;
+        color: #fff;
+        box-sizing: border-box;
+        transition: all 0.4s ease-out;
+        overflow: hidden;
+        &.active {
+          opacity: 1;
+          padding: 0 3% 2rem;
+          transition: all 0.4s ease-in;
+        }
+        .period {
+          font-weight: 100;
+          font-size: 0.875rem;
+        }
+        .thumb_slides {
+          margin-top: 1rem;
+          width: 100%;
+          height: 20rem;
+          background: white;
+        }
+        .highlights {
+          margin-top: 0.6rem;
+          ul {
+            display: flex;
+            li {
+              border: 1px solid $pointColor;
+              border-radius: 0.8rem;
+              margin-right: 0.5rem;
+              padding: 0.2rem 0.8rem;
+              color: $pointColor;
+            }
+          }
+        }
+        .description {
+          margin-top: 2rem;
+          font-size: 1.125rem;
+          line-height: 1.6rem;
+        }
+        .direct_btns {
+          margin-top: 2rem;
+          button {
+            line-height: 2rem;
+            padding: 0 1rem;
+            background: #fff;
+            color: #222;
+            border: none;
+            font-family: "Pretendard Variable", "맑은 고딕", sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: -1px;
+            margin-right: 1rem;
+          }
+        }
+      }
     }
-  }
-  .contents {
-    display: none;
   }
 }
 #contact {
@@ -370,10 +445,9 @@ h3 {
   position: relative;
   left: 0;
   bottom: 0;
-  overflow: hidden;
   .blur {
     position: absolute;
-    border-right: 900px;
+    //border-right: 900px;
     background: lighten($pointColor, 10%);
     &:nth-of-type(4) {
       filter: blur($blurAmount);
