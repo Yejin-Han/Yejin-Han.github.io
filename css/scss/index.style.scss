@@ -336,10 +336,17 @@ body::-webkit-scrollbar-track {
 }
 #project {
   margin-top: 30vh;
-  .wave {
+  #textSVG {
+    fill: #222;
+    position: relative;
+    width: 110%;
+    top: 0;
+    left: -5%;
     /* font다르게 */
-    font-size: 2rem;
-    transition: color 0.6s ease;
+    #textPath {
+      font-size: 1.5rem;
+      transition: color 0.6s ease;
+    }
   }
   h2 {
     margin-top: 20vh;
@@ -421,13 +428,12 @@ body::-webkit-scrollbar-track {
         }
         .direct_btns {
           margin-top: 2rem;
-          button {
+          a {
+            display: inline-block;
             line-height: 2rem;
             padding: 0 1rem;
             background: #fff;
             color: #222;
-            border: none;
-            font-family: "Pretendard Variable", "맑은 고딕", sans-serif;
             font-size: 1.2rem;
             letter-spacing: -1px;
             margin-right: 1rem;

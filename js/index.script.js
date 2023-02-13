@@ -2,15 +2,16 @@ const cursor = document.querySelector(".cursor");
 const home = document.querySelector("#header>h1");
 const gnb = document.querySelector("#gnb");
 const menus = gnb.querySelectorAll("a");
-const about = document.querySelector("#about");
+const sects = document.querySelectorAll("section");
+//const about = document.querySelector("#about");
 const project = document.querySelector("#project");
 const contact = document.querySelector("#contact");
 const skills = document.querySelector(".skills");
 const icons = document.querySelector(".icons");
-const wave = document.querySelector(".wave");
+const textPath = document.querySelector("#textPath");
 const projectTitle = project.querySelector("h2");
 const title = document.querySelectorAll(".main-text");
-const projectList = project.querySelectorAll("li");
+const projectList = project.querySelectorAll(".list");
 
 /* 초기 설정 */
 document.body.classList.add("default");
@@ -26,39 +27,24 @@ document.addEventListener("mousemove", (e) => {
 });
 
 /* nav 클릭 시 해당 섹션 위치로 이동하는 애니메이션 */
-/* const sect1 = document.querySelector("#about");
-const sect2 = document.querySelector("#project");
-const sect3 = document.querySelector("#contact"); */
-const sectTop1 = about.offsetTop;
-const sectTop2 = project.offsetTop;
-const sectTop3 = contact.offsetTop;
-home.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+const topPos = [];
+sects.forEach((sect) => {
+  topPos.push(sect.offsetTop);
 });
-menus[0].addEventListener("click", () => {
-  window.scrollTo({ top: sectTop1, behavior: "smooth" });
-});
-menus[1].addEventListener("click", () => {
-  window.scrollTo({ top: sectTop2, behavior: "smooth" });
-});
-menus[2].addEventListener("click", () => {
-  window.scrollTo({ top: sectTop3, behavior: "smooth" });
-});
-/* let offsetTops;
-menus.forEach((menu, idx) => {
-  if (idx == 0) {
-    offsetTops = sectTop1;
-  } else if (idx == 1) {
-    offsetTops = sectTop2;
-  } else if (idx == 2) {
-    offsetTops = sectTop3;
-  }
-  menu.addEventListener("click", (e, offsetTops) => {
-    e.preventDefault();
-    console.log(idx);
-    window.scrollTo({ top: offsetTops, behavior: "smooth" });
+window.addEventListener("resize", () => {
+  topPos.length = 0;
+  sects.forEach((sect) => {
+    topPos.push(sect.offsetTop);
   });
-}); */
+});
+menus.forEach((menu, idx) => {
+  home.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+  menu.addEventListener("click", () => {
+    window.scrollTo({ top: topPos[idx + 1], behavior: "smooth" });
+  });
+});
 
 /* .skills에서 마우스 방향에 따라 아이콘 움직이도록 */
 let X = 0,
@@ -81,6 +67,19 @@ skills.addEventListener("mousemove", (e) => {
   icons.style.transform = `perspective(600px) rotateX(${wmouseX}deg) rotateY(-${wmouseY}deg)`;
 });
 
+/* #project 스크롤하면 텍스트가 물결모양으로 움직이는 효과*/
+gsap.registerPlugin(ScrollTrigger);
+gsap.to("#textPath", {
+  attr: {
+    startOffset: -2500,
+  },
+  scrollTrigger: {
+    start: project.offsetTop - 500,
+    end: "30%",
+    scrub: 2,
+  },
+});
+
 /* #project 부분으로 스크롤되면 배경색 변함 */
 /* #project main_text에 커서 갖다대면 색 반전, 크기 커짐 */
 window.addEventListener("scroll", (e) => {
@@ -95,7 +94,7 @@ window.addEventListener("scroll", (e) => {
     menus.forEach((menu) => {
       menu.style.color = "#222";
     });
-    wave.style.color = "#222";
+    textPath.style.fill = "#222";
     projectTitle.style.color = "#222";
   } else if (scrollY >= scrollY + project.getBoundingClientRect().top) {
     document.body.style.backgroundColor = "#222";
@@ -104,7 +103,7 @@ window.addEventListener("scroll", (e) => {
     menus.forEach((menu) => {
       menu.style.color = "#fff";
     });
-    wave.style.color = "#fff";
+    textPath.style.fill = "#fff";
     projectTitle.style.color = "#fff";
   }
 });
@@ -121,15 +120,20 @@ title.forEach((elem) => {
 
 /* #projectList accordion */
 let listHeight = [];
-console.log(projectList);
+let listClickable = true;
 projectList.forEach((list, idx) => {
-  console.log(list.childNodes[3].clientHeight);
   listHeight[idx] = list.childNodes[3].clientHeight;
   list.childNodes[3].style.height = 0;
   list.addEventListener("click", () => {
-    console.log(list.childNodes[3]);
-    list.childNodes[3].classList.add("active");
-    list.childNodes[3].style.height = `${listHeight[idx]}px`;
+    if (listClickable) {
+      list.childNodes[3].classList.add("active");
+      list.childNodes[3].style.height = `${listHeight[idx]}px`;
+      listClickable = false;
+    } else {
+      list.childNodes[3].classList.remove("active");
+      list.childNodes[3].style.height = 0;
+      listClickable = true;
+    }
   });
 });
 
