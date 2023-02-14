@@ -349,7 +349,7 @@ body::-webkit-scrollbar-track {
   width: 110%;
   top: 0;
   left: -5%;
-  /* font다르게 */
+  font-family: "LeeSeoyun", "맑은 고딕", sans-serif;
 }
 #project #textSVG #textPath {
   font-size: 1.5rem;
@@ -411,6 +411,9 @@ body::-webkit-scrollbar-track {
   padding: 0 3% 2rem;
   transition: all 0.4s ease-in;
 }
+#project .projects > ul > li .contents.active .direct_btns > .qr_wrap {
+  opacity: 1;
+}
 #project .projects > ul > li .contents .period {
   font-weight: 100;
   font-size: 0.875rem;
@@ -429,15 +432,24 @@ body::-webkit-scrollbar-track {
 }
 #project .projects > ul > li .contents .highlights ul li {
   border: 1px solid #f7788a;
-  border-radius: 0.8rem;
+  border-radius: 1rem;
   margin-right: 0.5rem;
-  padding: 0.2rem 0.8rem;
+  padding: 0.25rem 0.8rem;
   color: #f7788a;
 }
 #project .projects > ul > li .contents .description {
   margin-top: 2rem;
   font-size: 1.125rem;
   line-height: 1.6rem;
+}
+#project .projects > ul > li .contents .description ul {
+  -webkit-padding-start: 0;
+          padding-inline-start: 0;
+  padding-left: 2%;
+  margin-top: 0.4rem;
+}
+#project .projects > ul > li .contents .description ul li {
+  list-style: circle;
 }
 #project .projects > ul > li .contents .direct_btns {
   margin-top: 2rem;
@@ -451,6 +463,23 @@ body::-webkit-scrollbar-track {
   font-size: 1.2rem;
   letter-spacing: -1px;
   margin-right: 1rem;
+}
+#project .projects > ul > li .contents .direct_btns .qr_wrap {
+  position: absolute;
+  right: 3%;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease-in;
+}
+#project .projects > ul > li .contents .direct_btns .qr_wrap img {
+  display: block;
+  width: 50%;
+  margin: 0 auto 0.4rem;
+}
+#project .projects > ul > li .contents .direct_btns .qr_wrap span {
+  display: block;
+  text-align: center;
+  font-size: 0.875rem;
 }
 
 #contact {

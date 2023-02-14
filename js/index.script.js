@@ -8,6 +8,7 @@ const project = document.querySelector("#project");
 const contact = document.querySelector("#contact");
 const skills = document.querySelector(".skills");
 const icons = document.querySelector(".icons");
+const textSVG = document.querySelector("#textSVG");
 const textPath = document.querySelector("#textPath");
 const projectTitle = project.querySelector("h2");
 const title = document.querySelectorAll(".main-text");
@@ -68,21 +69,26 @@ skills.addEventListener("mousemove", (e) => {
 });
 
 /* #project 스크롤하면 텍스트가 물결모양으로 움직이는 효과*/
-gsap.registerPlugin(ScrollTrigger);
-gsap.to("#textPath", {
-  attr: {
-    startOffset: -2500,
-  },
-  scrollTrigger: {
-    start: project.offsetTop - 500,
-    end: "30%",
-    scrub: 2,
-  },
-});
+let path = document.querySelector(textPath.getAttribute("href"));
+let pathLength = path.getTotalLength();
+
+const updateTextPathOffset = (offset) => {
+  textPath.setAttribute("startOffset", offset);
+};
+updateTextPathOffset(pathLength);
+
+const textScroll = () => {
+  requestAnimationFrame(() => {
+    let rect = textSVG.getBoundingClientRect();
+    let scrollPercent = rect.y / window.innerHeight;
+    updateTextPathOffset(scrollPercent * 2 * pathLength);
+  });
+};
 
 /* #project 부분으로 스크롤되면 배경색 변함 */
 /* #project main_text에 커서 갖다대면 색 반전, 크기 커짐 */
 window.addEventListener("scroll", (e) => {
+  textScroll();
   const scrollY = window.pageYOffset;
   if (
     scrollY < scrollY + project.getBoundingClientRect().top ||
