@@ -144,19 +144,18 @@ projectList.forEach((list, idx) => {
 });
 
 /* #contact 배경 효과 */
+const blurs = gsap.utils.toArray(".blur");
+
 const random = (min, max) => {
   const delta = max - min;
   return (direction = 1) => (min + delta * Math.random()) * direction;
 };
-
 const randomX = random(-400, 400);
 const randomY = random(-200, 200);
 const randomDelay = random(0, 50);
 const randomTime = random(6, 12);
 const randomTime2 = random(5, 6);
 const randomAngle = random(-30, 150);
-
-const blurs = gsap.utils.toArray(".blur");
 
 const rotate = (target, direction) => {
   gsap.to(target, randomTime2(), {

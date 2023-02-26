@@ -28,14 +28,6 @@ body {
   font-family: "Pretendard Variable", "맑은 고딕", sans-serif;
   cursor: none;
   transition: background 0.6s ease;
-  /* &.blur {
-    background-image: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(167, 239, 247, 0) 70%,
-      $contactColor 100%
-    );
-  } */
   &.default {
     background-image: linear-gradient(
       180deg,
@@ -208,19 +200,27 @@ body::-webkit-scrollbar-track {
   .content_right {
     width: 70%;
   }
-  .sect_title {
-    font-family: "Pretendard Variable", "맑은 고딕", sans-serif;
-    font-size: 2.2rem;
-    letter-spacing: -1px;
-    display: inline-block;
-    padding: 3rem 5rem 2rem;
-    background-image: url("../img/quote1.png"), url("../img/quote2.png");
-    background-repeat: no-repeat;
-    background-size: 3.5rem auto;
-    background-position: left top, right top;
-    span {
-      position: relative;
-      top: -0.75rem;
+  .overview {
+    .sect_title {
+      font-family: "Pretendard Variable", "맑은 고딕", sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: -1px;
+      display: inline-block;
+      padding: 3rem 5rem 2rem;
+      background-image: url("../img/quote1.png"), url("../img/quote2.png");
+      background-repeat: no-repeat;
+      background-size: 3.5rem auto;
+      background-position: left top, right top;
+      span {
+        position: relative;
+        top: -0.75rem;
+      }
+    }
+    p {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      line-height: 1.6em;
+      letter-spacing: -1px;
     }
   }
   .history {
@@ -274,11 +274,12 @@ body::-webkit-scrollbar-track {
       p {
         font-size: 1.1rem;
         margin-top: 1.3rem;
+        line-height: 1.6em;
       }
     }
   }
   .skills {
-    //padding-top: 8rem;
+    padding-bottom: 30vh;
     h3 {
       margin: 20rem 0 2rem;
       font-size: 8rem;
@@ -335,7 +336,6 @@ body::-webkit-scrollbar-track {
   }
 }
 #project {
-  margin-top: 30vh;
   #textSVG {
     fill: #222;
     position: relative;
@@ -479,9 +479,52 @@ body::-webkit-scrollbar-track {
   position: relative;
   left: 0;
   bottom: 0;
+  display: flex;
+  justify-content: center;
+  /* overflow: hidden; */
+  .contact_wrapper {
+    width: 60vw;
+    height: 80%;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    z-index: 1000;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.17);
+    box-shadow: 0px 4px 30px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    -moz-backdrop-filter: blur(14px);
+    @keyframes slideTxt {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+    a {
+      color: #222;
+    }
+    .contact_title {
+      margin-top: 3rem;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      > strong {
+        font-size: 6rem;
+        letter-spacing: -2px;
+        white-space: nowrap;
+        animation: 4s linear 0s infinite normal none running slideTxt;
+      }
+    }
+    .address {
+      margin-top: 4rem;
+    }
+  }
   .blur {
     position: absolute;
-    //border-right: 900px;
     background: lighten($pointColor, 10%);
     &:nth-of-type(4) {
       filter: blur($blurAmount);
@@ -508,9 +551,15 @@ body::-webkit-scrollbar-track {
   }
 }
 #footer {
+  width: 100vw;
   position: absolute;
   left: 0;
   bottom: 0;
+  z-index: 1000;
+  padding-bottom: 1.4rem;
+  .copy {
+    text-align: center;
+  }
 }
 
 @media screen and (min-width: 1025px) {

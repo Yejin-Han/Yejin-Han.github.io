@@ -13,14 +13,6 @@ body {
   font-family: "Pretendard Variable", "맑은 고딕", sans-serif;
   cursor: none;
   transition: background 0.6s ease;
-  /* &.blur {
-    background-image: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(167, 239, 247, 0) 70%,
-      $contactColor 100%
-    );
-  } */
 }
 body.default {
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(252, 242, 214, 0) 75%, #fcf2d6 100%);
@@ -195,7 +187,7 @@ body::-webkit-scrollbar-track {
 #about .content_right {
   width: 70%;
 }
-#about .sect_title {
+#about .overview .sect_title {
   font-family: "Pretendard Variable", "맑은 고딕", sans-serif;
   font-size: 2.2rem;
   letter-spacing: -1px;
@@ -206,9 +198,15 @@ body::-webkit-scrollbar-track {
   background-size: 3.5rem auto;
   background-position: left top, right top;
 }
-#about .sect_title span {
+#about .overview .sect_title span {
   position: relative;
   top: -0.75rem;
+}
+#about .overview p {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  line-height: 1.6em;
+  letter-spacing: -1px;
 }
 #about .history {
   margin-top: 8rem;
@@ -263,6 +261,10 @@ body::-webkit-scrollbar-track {
 #about .history li p {
   font-size: 1.1rem;
   margin-top: 1.3rem;
+  line-height: 1.6em;
+}
+#about .skills {
+  padding-bottom: 30vh;
 }
 #about .skills h3 {
   margin: 20rem 0 2rem;
@@ -340,9 +342,6 @@ body::-webkit-scrollbar-track {
   top: 60%;
 }
 
-#project {
-  margin-top: 30vh;
-}
 #project #textSVG {
   fill: #222;
   position: relative;
@@ -490,6 +489,50 @@ body::-webkit-scrollbar-track {
   position: relative;
   left: 0;
   bottom: 0;
+  display: flex;
+  justify-content: center;
+  /* overflow: hidden; */
+}
+#contact .contact_wrapper {
+  width: 60vw;
+  height: 80%;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  z-index: 1000;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  box-shadow: 0px 4px 30px 0 rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  -moz-backdrop-filter: blur(14px);
+}
+@keyframes slideTxt {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+#contact .contact_wrapper a {
+  color: #222;
+}
+#contact .contact_wrapper .contact_title {
+  margin-top: 3rem;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+}
+#contact .contact_wrapper .contact_title > strong {
+  font-size: 6rem;
+  letter-spacing: -2px;
+  white-space: nowrap;
+  animation: 4s linear 0s infinite normal none running slideTxt;
+}
+#contact .contact_wrapper .address {
+  margin-top: 4rem;
 }
 #contact .blur {
   position: absolute;
@@ -519,7 +562,13 @@ body::-webkit-scrollbar-track {
 }
 
 #footer {
+  width: 100vw;
   position: absolute;
   left: 0;
   bottom: 0;
+  z-index: 1000;
+  padding-bottom: 1.4rem;
+}
+#footer .copy {
+  text-align: center;
 }
