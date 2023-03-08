@@ -194,8 +194,15 @@ body::-webkit-scrollbar-track {
   }
   .content_left {
     width: 30%;
-    background: #fff;
-    border: 1px solid #222;
+    /* border: 1px solid #222; */
+    position: relative;
+    > img {
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
   .content_right {
     width: 70%;

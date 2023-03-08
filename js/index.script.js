@@ -3,9 +3,11 @@ const home = document.querySelector("#header>h1");
 const gnb = document.querySelector("#gnb");
 const menus = gnb.querySelectorAll("a");
 const sects = document.querySelectorAll("section");
-//const about = document.querySelector("#about");
+const about = document.querySelector("#about");
 const project = document.querySelector("#project");
 const contact = document.querySelector("#contact");
+const profileArea = document.querySelector(".content_left");
+const profileImg = profileArea.querySelector("img");
 const skills = document.querySelector(".skills");
 const icons = document.querySelector(".icons");
 const textSVG = document.querySelector("#textSVG");
@@ -13,6 +15,9 @@ const textPath = document.querySelector("#textPath");
 const projectTitle = project.querySelector("h2");
 const title = document.querySelectorAll(".main-text");
 const projectList = project.querySelectorAll(".list");
+const aboutTop = about.getBoundingClientRect().top;
+const profileTop = profileArea.getBoundingClientRect().top;
+const profileBottom = profileArea.getBoundingClientRect().bottom;
 
 /* 초기 설정 */
 document.body.classList.add("default");
@@ -46,6 +51,13 @@ menus.forEach((menu, idx) => {
     window.scrollTo({ top: topPos[idx + 1], behavior: "smooth" });
   });
 });
+
+/* about 프로필 사진 스크롤에 따라 따라오게 */
+const profileScroll = () => {
+  requestAnimationFrame(() => {
+    profileImg.style.top = `${scrollY - aboutTop}px`;
+  });
+};
 
 /* .skills에서 마우스 방향에 따라 아이콘 움직이도록 */
 let X = 0,
@@ -88,8 +100,15 @@ const textScroll = () => {
 /* #project 부분으로 스크롤되면 배경색 변함 */
 /* #project main_text에 커서 갖다대면 색 반전, 크기 커짐 */
 window.addEventListener("scroll", (e) => {
-  textScroll();
   const scrollY = window.pageYOffset;
+  console.log(scrollY, aboutTop - 250, profileBottom);
+  textScroll();
+  if (
+    scrollY >= aboutTop &&
+    scrollY < profileBottom - profileImg.clientHeight - 200
+  ) {
+    profileScroll();
+  }
   if (
     scrollY < scrollY + project.getBoundingClientRect().top ||
     scrollY >= scrollY + contact.getBoundingClientRect().top - 550
