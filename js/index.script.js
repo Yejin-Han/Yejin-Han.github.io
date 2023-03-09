@@ -1,4 +1,5 @@
 const cursor = document.querySelector(".cursor");
+const petalContainer = document.querySelector(".petal_container");
 const home = document.querySelector("#header>h1");
 const gnb = document.querySelector("#gnb");
 const menus = gnb.querySelectorAll("a");
@@ -31,6 +32,23 @@ document.addEventListener("mousemove", (e) => {
     cursor.style.top = `${posY}px`;
   });
 });
+
+/* 꽃잎 날리는 효과 */
+const createPetal = () => {
+  const petal = document.createElement("img");
+  petal.src = "img/petal.png";
+  petal.className = "petal";
+  petal.style.left = Math.random() * window.innerWidth + "px";
+  petal.style.top = Math.random() * -600 + "px";
+  petal.size = Math.random() * 20 + 10;
+  petal.style.width = petal.size + "px";
+  petal.style.height = petal.size + "px";
+  petal.style.opacity = petal.size / 37.5;
+  petalContainer.appendChild(petal);
+};
+for (let i = 0; i < 20; i++) {
+  createPetal();
+}
 
 /* nav 클릭 시 해당 섹션 위치로 이동하는 애니메이션 */
 const topPos = [];

@@ -85,6 +85,29 @@ body::-webkit-scrollbar-track {
   }
 }
 
+@keyframes blow {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(300px, 500px) rotate(360deg);
+  }
+}
+.petal_container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2000;
+  > .petal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: blow 2s linear infinite;
+  }
+}
+
 @keyframes rotate360 {
   0% {
     transform: rotate(0deg);
