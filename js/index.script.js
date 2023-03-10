@@ -34,7 +34,7 @@ document.addEventListener("mousemove", (e) => {
 });
 
 /* 꽃잎 날리는 효과 */
-const createPetal = () => {
+/* const createPetal = () => {
   const petal = document.createElement("img");
   petal.src = "img/petal.png";
   petal.className = "petal";
@@ -48,6 +48,48 @@ const createPetal = () => {
 };
 for (let i = 0; i < 20; i++) {
   createPetal();
+}  */
+const total = 30;
+gsap.set(".petal_container", { perspective: 600 });
+gsap.set("img", { xPercent: "-50%", yPercent: "-50%" });
+
+const Rand = (min, max) => {
+  return min + Math.random() * (max - min);
+};
+const fall = (el) => {
+  gsap.to(el, Rand(6, 15), {
+    y: window.innerHeight + 100,
+    ease: Linear.easeNone,
+    repeat: -1,
+    delay: -15,
+  });
+  gsap.to(el, Rand(4, 8), {
+    x: "+=100",
+    rotationZ: Rand(0, 180),
+    repeat: -1,
+    yoyo: true,
+    ease: Sine.easeInOut,
+  });
+  gsap.to(el, Rand(2, 8), {
+    rotationX: Rand(0, 360),
+    rotationY: Rand(0, 360),
+    repeat: -1,
+    yoyo: true,
+    ease: Sine.easeInOut,
+    delay: -5,
+  });
+};
+
+for (i = 0; i < total; i++) {
+  const div = document.createElement("div");
+  gsap.set(div, {
+    attr: { class: "petal" },
+    x: Rand(0, window.innerWidth),
+    y: Rand(-200, -150),
+    z: Rand(-200, 200),
+  });
+  petalContainer.appendChild(div);
+  fall(div);
 }
 
 /* nav 클릭 시 해당 섹션 위치로 이동하는 애니메이션 */
