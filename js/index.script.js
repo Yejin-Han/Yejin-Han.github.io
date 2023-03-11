@@ -4,6 +4,7 @@ const home = document.querySelector("#header>h1");
 const gnb = document.querySelector("#gnb");
 const menus = gnb.querySelectorAll("a");
 const sects = document.querySelectorAll("section");
+const heading = document.querySelectorAll(".heading");
 const about = document.querySelector("#about");
 const project = document.querySelector("#project");
 const contact = document.querySelector("#contact");
@@ -34,43 +35,30 @@ document.addEventListener("mousemove", (e) => {
 });
 
 /* 꽃잎 날리는 효과 */
-/* const createPetal = () => {
-  const petal = document.createElement("img");
-  petal.src = "img/petal.png";
-  petal.className = "petal";
-  petal.style.left = Math.random() * window.innerWidth + "px";
-  petal.style.top = Math.random() * -600 + "px";
-  petal.size = Math.random() * 20 + 10;
-  petal.style.width = petal.size + "px";
-  petal.style.height = petal.size + "px";
-  petal.style.opacity = petal.size / 37.5;
-  petalContainer.appendChild(petal);
-};
-for (let i = 0; i < 20; i++) {
-  createPetal();
-}  */
 const total = 30;
-gsap.set(".petal_container", { perspective: 600 });
 gsap.set("img", { xPercent: "-50%", yPercent: "-50%" });
 
 const Rand = (min, max) => {
   return min + Math.random() * (max - min);
 };
 const fall = (el) => {
-  gsap.to(el, Rand(6, 15), {
-    y: window.innerHeight + 100,
+  gsap.to(el, {
+    duration: Rand(6, 15),
+    y: window.innerHeight + 200,
     ease: Linear.easeNone,
     repeat: -1,
     delay: -15,
   });
-  gsap.to(el, Rand(4, 8), {
+  gsap.to(el, {
+    duration: Rand(4, 8),
     x: "+=100",
     rotationZ: Rand(0, 180),
     repeat: -1,
     yoyo: true,
     ease: Sine.easeInOut,
   });
-  gsap.to(el, Rand(2, 8), {
+  gsap.to(el, {
+    duration: Rand(2, 8),
     rotationX: Rand(0, 360),
     rotationY: Rand(0, 360),
     repeat: -1,
@@ -110,6 +98,13 @@ menus.forEach((menu, idx) => {
   menu.addEventListener("click", () => {
     window.scrollTo({ top: topPos[idx + 1], behavior: "smooth" });
   });
+});
+
+/* main_visual text parallex scrolling */
+heading.forEach((elem) => {
+  let splitTxt = elem.innerText.split("").join("<span></span>");
+  splitTxt = "<span>" + splitTxt + "</span>";
+  elem.innerHTML = splitTxt;
 });
 
 /* about 프로필 사진 스크롤에 따라 따라오게 */
