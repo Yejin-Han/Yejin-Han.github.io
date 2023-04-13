@@ -6,7 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>한예진의 포트폴리오</title>
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+    />
     <link rel="stylesheet" href="css/index.style.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   </head>
   <body>
     <div class="cursor">
@@ -244,7 +253,13 @@
             <h4 class="main-text">SHOOT THE ZOMBIE</h4>
             <div class="contents">
               <span class="period">2022.11.16. - 2022.11.29.</span>
-              <div class="thumb_slides"></div>
+              <div class="thumb_slides">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide"></div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+              </div>
               <div class="highlights">
                 <ul>
                   <li>Mobile</li>
@@ -371,10 +386,33 @@
             </div>
           </li>
           <li class="list">
-            <h4 class="main-text">Gather PEACHES</h4>
+            <div class="title_wrap">
+              <h4 class="main-text">Gather PEACHES</h4>
+              <button type="button"><i class="xi-close-square"></i></button>
+            </div>
             <div class="contents">
               <span class="period">2023.01.09. - 2023.01.19.</span>
-              <div class="thumb_slides"></div>
+              <div class="thumb_slides">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <img src="capture/peach1.jpg" alt="peach1" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="capture/peach2.jpg" alt="peach2" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="capture/peach3.gif" alt="peach3" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="capture/peach4.jpg" alt="peach4" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="capture/peach5.jpg" alt="peach5" />
+                  </div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+              </div>
               <div class="highlights">
                 <ul>
                   <li>PC</li>
@@ -530,6 +568,6 @@
       <p class="copy">&copy; 2023 Yejin Han. All Rights Reserved.</p>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="js/index.script.js"></script>
+    <script src="js/index.script.js" defer></script>
   </body>
 </html>

@@ -396,7 +396,12 @@ body::-webkit-scrollbar-track {
   position: relative;
   border-bottom: 1px solid #f7788a;
 }
-#project .projects > ul > li h4 {
+#project .projects > ul > li .title_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#project .projects > ul > li .title_wrap h4 {
   display: inline-block;
   position: relative;
   z-index: 100;
@@ -407,16 +412,26 @@ body::-webkit-scrollbar-track {
   font-weight: 900;
   font-size: 2rem;
 }
-#project .projects > ul > li h4.main-text {
+#project .projects > ul > li .title_wrap h4.main-text {
   color: #fff;
   mix-blend-mode: difference;
   z-index: 10005;
 }
-#project .projects > ul > li h4::-moz-selection {
+#project .projects > ul > li .title_wrap h4::-moz-selection {
   background: none;
 }
-#project .projects > ul > li h4::selection {
+#project .projects > ul > li .title_wrap h4::selection {
   background: none;
+}
+#project .projects > ul > li .title_wrap button {
+  display: block;
+  background: transparent;
+  border: 0 none;
+  margin-right: 10%;
+}
+#project .projects > ul > li .title_wrap button > i {
+  color: #fff;
+  font-size: 3rem;
 }
 #project .projects > ul > li .contents {
   position: relative;
@@ -445,8 +460,7 @@ body::-webkit-scrollbar-track {
 #project .projects > ul > li .contents .thumb_slides {
   margin-top: 1rem;
   width: 100%;
-  height: 20rem;
-  background: white;
+  /* background: white; */
 }
 #project .projects > ul > li .contents .highlights {
   margin-top: 0.6rem;

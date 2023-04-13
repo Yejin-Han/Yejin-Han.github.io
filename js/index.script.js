@@ -1,3 +1,4 @@
+/* 변수 선언 */
 const cursor = document.querySelector(".cursor");
 const petalContainer = document.querySelector(".petal_container");
 const home = document.querySelector("#header>h1");
@@ -100,14 +101,15 @@ menus.forEach((menu, idx) => {
   });
 });
 
-/* main_visual text parallex scrolling */
+/* #main_visual 텍스트 패럴렉스 스크롤링 */
 heading.forEach((elem) => {
-  let splitTxt = elem.innerText.split("").join("<span></span>");
+  let splitTxt = elem.innerText.split("").join("</span><span>");
   splitTxt = "<span>" + splitTxt + "</span>";
+  console.log(splitTxt);
   elem.innerHTML = splitTxt;
 });
 
-/* about 프로필 사진 스크롤에 따라 따라오게 */
+/* #about 프로필 사진 스크롤에 따라 따라오게 */
 const profileScroll = () => {
   requestAnimationFrame(() => {
     profileImg.style.top = `${scrollY - aboutTop}px`;
@@ -200,22 +202,37 @@ title.forEach((elem) => {
 
 /* #projectList accordion */
 let listHeight = [];
-let listClickable = true;
+/* let listClickable = true; */
 projectList.forEach((list, idx) => {
   listHeight[idx] = list.childNodes[3].clientHeight;
+  console.log(list.childNodes[2]);
   list.childNodes[3].style.height = 0;
   list.addEventListener("click", () => {
-    if (listClickable) {
-      list.childNodes[3].classList.add("active");
-      list.childNodes[3].style.height = `${listHeight[idx]}px`;
-      listClickable = false;
-    } else {
-      list.childNodes[3].classList.remove("active");
-      list.childNodes[3].style.height = 0;
-      listClickable = true;
-    }
+    /* if (listClickable) { */
+    list.childNodes[3].classList.add("active");
+    list.childNodes[3].style.height = `${listHeight[idx]}px`;
+    /* listClickable = false; */
+    /* } else { */
+    /* listClickable = true; */
+    /* } */
+  });
+  list.querySelector("i").addEventListener("click", () => {
+    list.childNodes[3].classList.remove("active");
+    list.childNodes[3].style.height = 0;
   });
 });
+
+/* .thumb_slides swiper 적용 */
+const swiper = new Swiper(".thumb_slides", {
+  draggable: true,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  spaceBetween: 20,
+  slidesPerView: "auto",
+});
+/* const swiper = document.querySelector('.swiper').swiper; */
 
 /* #contact 배경 효과 */
 const blurs = gsap.utils.toArray(".blur");
