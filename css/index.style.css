@@ -388,7 +388,7 @@ body::-webkit-scrollbar-track {
   margin-top: 10vh;
   padding-bottom: 50vh;
 }
-#project .projects > ul > li {
+#project .projects > ul > .list {
   width: 80%;
   margin-left: auto;
   margin-right: 0;
@@ -396,12 +396,12 @@ body::-webkit-scrollbar-track {
   position: relative;
   border-bottom: 1px solid #f7788a;
 }
-#project .projects > ul > li .title_wrap {
+#project .projects > ul > .list .title_wrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-#project .projects > ul > li .title_wrap h4 {
+#project .projects > ul > .list .title_wrap h4 {
   display: inline-block;
   position: relative;
   z-index: 100;
@@ -412,28 +412,29 @@ body::-webkit-scrollbar-track {
   font-weight: 900;
   font-size: 2rem;
 }
-#project .projects > ul > li .title_wrap h4.main-text {
+#project .projects > ul > .list .title_wrap h4.main-text {
   color: #fff;
   mix-blend-mode: difference;
   z-index: 10005;
 }
-#project .projects > ul > li .title_wrap h4::-moz-selection {
+#project .projects > ul > .list .title_wrap h4::-moz-selection {
   background: none;
 }
-#project .projects > ul > li .title_wrap h4::selection {
+#project .projects > ul > .list .title_wrap h4::selection {
   background: none;
 }
-#project .projects > ul > li .title_wrap button {
-  display: block;
+#project .projects > ul > .list .title_wrap button {
+  display: none;
   background: transparent;
   border: 0 none;
   margin-right: 10%;
+  cursor: pointer;
 }
-#project .projects > ul > li .title_wrap button > i {
+#project .projects > ul > .list .title_wrap button > i {
   color: #fff;
   font-size: 3rem;
 }
-#project .projects > ul > li .contents {
+#project .projects > ul > .list .contents {
   position: relative;
   top: -2rem;
   left: 0;
@@ -445,54 +446,64 @@ body::-webkit-scrollbar-track {
   transition: all 0.4s ease-out;
   overflow: hidden;
 }
-#project .projects > ul > li .contents.active {
-  opacity: 1;
-  padding: 0 3% 2rem;
-  transition: all 0.4s ease-in;
-}
-#project .projects > ul > li .contents.active .direct_btns > .qr_wrap {
-  opacity: 1;
-}
-#project .projects > ul > li .contents .period {
+#project .projects > ul > .list .contents .period {
   font-weight: 100;
   font-size: 0.875rem;
 }
-#project .projects > ul > li .contents .thumb_slides {
+#project .projects > ul > .list .contents .thumb_slides {
   margin-top: 1rem;
   width: 100%;
-  /* background: white; */
+  box-sizing: border-box;
+  padding: 0 2rem;
+  position: relative;
+  overflow: hidden;
 }
-#project .projects > ul > li .contents .highlights {
+#project .projects > ul > .list .contents .thumb_slides .swiper-wrapper .swiper-slide {
+  width: auto;
+}
+#project .projects > ul > .list .contents .thumb_slides .swiper-button-prev,
+#project .projects > ul > .list .contents .thumb_slides .swiper-rtl .swiper-button-next {
+  left: 0;
+}
+#project .projects > ul > .list .contents .thumb_slides .swiper-button-next,
+#project .projects > ul > .list .contents .thumb_slides .swiper-rtl .swiper-button-prev {
+  right: 0;
+}
+#project .projects > ul > .list .contents .thumb_slides .swiper-button-next,
+#project .projects > ul > .list .contents .thumb_slides .swiper-button-prev {
+  color: #f7e2a7;
+}
+#project .projects > ul > .list .contents .highlights {
   margin-top: 0.6rem;
 }
-#project .projects > ul > li .contents .highlights ul {
+#project .projects > ul > .list .contents .highlights ul {
   display: flex;
 }
-#project .projects > ul > li .contents .highlights ul li {
+#project .projects > ul > .list .contents .highlights ul li {
   border: 1px solid #f7788a;
   border-radius: 1rem;
   margin-right: 0.5rem;
   padding: 0.25rem 0.8rem;
   color: #f7788a;
 }
-#project .projects > ul > li .contents .description {
+#project .projects > ul > .list .contents .description {
   margin-top: 2rem;
   font-size: 1.125rem;
   line-height: 1.6rem;
 }
-#project .projects > ul > li .contents .description ul {
+#project .projects > ul > .list .contents .description ul {
   -webkit-padding-start: 0;
           padding-inline-start: 0;
   padding-left: 2%;
   margin-top: 0.4rem;
 }
-#project .projects > ul > li .contents .description ul li {
+#project .projects > ul > .list .contents .description ul li {
   list-style: circle;
 }
-#project .projects > ul > li .contents .direct_btns {
+#project .projects > ul > .list .contents .direct_btns {
   margin-top: 2rem;
 }
-#project .projects > ul > li .contents .direct_btns a {
+#project .projects > ul > .list .contents .direct_btns a {
   display: inline-block;
   line-height: 2rem;
   padding: 0 1rem;
@@ -502,22 +513,33 @@ body::-webkit-scrollbar-track {
   letter-spacing: -1px;
   margin-right: 1rem;
 }
-#project .projects > ul > li .contents .direct_btns .qr_wrap {
+#project .projects > ul > .list .contents .direct_btns .qr_wrap {
   position: absolute;
   right: 3%;
   bottom: 0;
   opacity: 0;
   transition: opacity 0.4s ease-in;
 }
-#project .projects > ul > li .contents .direct_btns .qr_wrap img {
+#project .projects > ul > .list .contents .direct_btns .qr_wrap img {
   display: block;
   width: 50%;
   margin: 0 auto 0.4rem;
 }
-#project .projects > ul > li .contents .direct_btns .qr_wrap span {
+#project .projects > ul > .list .contents .direct_btns .qr_wrap span {
   display: block;
   text-align: center;
   font-size: 0.875rem;
+}
+#project .projects > ul > .list.active button {
+  display: block;
+}
+#project .projects > ul > .list.active .contents {
+  opacity: 1;
+  padding: 0 3% 2rem;
+  transition: all 0.4s ease-in;
+}
+#project .projects > ul > .list.active .direct_btns > .qr_wrap {
+  opacity: 1;
 }
 
 #contact {

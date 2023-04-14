@@ -202,24 +202,23 @@ title.forEach((elem) => {
 
 /* #projectList accordion */
 let listHeight = [];
-/* let listClickable = true; */
-projectList.forEach((list, idx) => {
-  listHeight[idx] = list.childNodes[3].clientHeight;
-  console.log(list.childNodes[2]);
-  list.childNodes[3].style.height = 0;
+const toggleList = (list, idx) => {
+  const listContents = list.querySelector(".contents");
+  const closeBtn = list.querySelector("button");
+  listHeight[idx] = listContents.clientHeight;
+  listContents.style.height = 0;
   list.addEventListener("click", () => {
-    /* if (listClickable) { */
-    list.childNodes[3].classList.add("active");
-    list.childNodes[3].style.height = `${listHeight[idx]}px`;
-    /* listClickable = false; */
-    /* } else { */
-    /* listClickable = true; */
-    /* } */
+    list.classList.add("active");
+    listContents.style.height = `${listHeight[idx]}px`;
   });
-  list.querySelector("i").addEventListener("click", () => {
-    list.childNodes[3].classList.remove("active");
-    list.childNodes[3].style.height = 0;
+  closeBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    list.classList.remove("active");
+    listContents.style.height = `0px`;
   });
+};
+projectList.forEach((list, idx) => {
+  toggleList(list, idx);
 });
 
 /* .thumb_slides swiper 적용 */
@@ -229,6 +228,8 @@ const swiper = new Swiper(".thumb_slides", {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
   },
+  allowSlidePrev: true,
+  allowSlideNext: true,
   spaceBetween: 20,
   slidesPerView: "auto",
 });

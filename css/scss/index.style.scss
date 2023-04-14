@@ -381,7 +381,7 @@ body::-webkit-scrollbar-track {
   .projects {
     margin-top: 10vh;
     padding-bottom: 50vh;
-    > ul > li {
+    > ul > .list {
       width: 80%;
       margin-left: auto;
       margin-right: 0;
@@ -412,10 +412,11 @@ body::-webkit-scrollbar-track {
           }
         }
         button {
-          display: block;
+          display: none;
           background: transparent;
           border: 0 none;
           margin-right: 10%;
+          cursor: pointer;
           > i {
             color: #fff;
             font-size: 3rem;
@@ -433,14 +434,6 @@ body::-webkit-scrollbar-track {
         box-sizing: border-box;
         transition: all 0.4s ease-out;
         overflow: hidden;
-        &.active {
-          opacity: 1;
-          padding: 0 3% 2rem;
-          transition: all 0.4s ease-in;
-          .direct_btns > .qr_wrap {
-            opacity: 1;
-          }
-        }
         .period {
           font-weight: 100;
           font-size: 0.875rem;
@@ -448,7 +441,27 @@ body::-webkit-scrollbar-track {
         .thumb_slides {
           margin-top: 1rem;
           width: 100%;
-          /* background: white; */
+          box-sizing: border-box;
+          padding: 0 2rem;
+          position: relative;
+          overflow: hidden;
+          .swiper-wrapper {
+            .swiper-slide {
+              width: auto;
+            }
+          }
+          .swiper-button-prev,
+          .swiper-rtl .swiper-button-next {
+            left: 0;
+          }
+          .swiper-button-next,
+          .swiper-rtl .swiper-button-prev {
+            right: 0;
+          }
+          .swiper-button-next,
+          .swiper-button-prev {
+            color: $mainColor;
+          }
         }
         .highlights {
           margin-top: 0.6rem;
@@ -505,6 +518,19 @@ body::-webkit-scrollbar-track {
               font-size: 0.875rem;
             }
           }
+        }
+      }
+      &.active {
+        button {
+          display: block;
+        }
+        .contents {
+          opacity: 1;
+          padding: 0 3% 2rem;
+          transition: all 0.4s ease-in;
+        }
+        .direct_btns > .qr_wrap {
+          opacity: 1;
         }
       }
     }
@@ -599,11 +625,4 @@ body::-webkit-scrollbar-track {
   .copy {
     text-align: center;
   }
-}
-
-@media screen and (min-width: 1025px) {
-}
-@media screen and (max-width: 1024px) and (min-width: 769px) {
-}
-@media screen and (max-width: 768px) {
 }
