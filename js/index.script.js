@@ -21,8 +21,8 @@ const projectList = project.querySelectorAll(".list");
 const aboutTop = about.getBoundingClientRect().top;
 const profileTop = profileArea.getBoundingClientRect().top;
 const profileBottom = profileArea.getBoundingClientRect().bottom;
-/* const prevBtn = document.querySelector(".swiper-button-prev");
-const nextBtn = document.querySelector(".swiper-button-next"); */
+const prevBtn = document.querySelector(".swiper-button-prev");
+const nextBtn = document.querySelector(".swiper-button-next");
 
 /* 초기 설정 */
 document.body.classList.add("default");
@@ -204,19 +204,50 @@ title.forEach((elem) => {
 
 /* #projectList accordion, mediaquery button */
 let listHeight = [];
+let clickable = true;
+let displayNum = 1;
+const heightChange = (displayNum, listContents, idx) => {
+  switch (displayNum) {
+    case 1:
+      listContents.style.height = `${listHeight[idx]}px`;
+      break;
+    case 2:
+      listContents.style.height = `${listHeight[idx] + 100}px`;
+      break;
+    case 3:
+      listContents.style.height = `${listHeight[idx] + 150}px`;
+      break;
+  }
+};
 const toggleList = (list, idx) => {
   const listContents = list.querySelector(".contents");
   const closeBtn = list.querySelector(".close_btn");
-  listHeight[idx] = listContents.clientHeight;
-  listContents.style.height = 0;
-  list.addEventListener("click", () => {
-    list.classList.add("active");
-    listContents.style.height = `${listHeight[idx]}px`;
-  });
-  const btns = list.querySelectorAll(".btn");
   const d = list.querySelectorAll(".d");
   const t = list.querySelectorAll(".t");
   const m = list.querySelectorAll(".m");
+  const btns = list.querySelectorAll(".btn");
+  listHeight[idx] = listContents.clientHeight;
+  listContents.style.height = 0;
+  list.addEventListener("click", () => {
+    clickable = false;
+    list.classList.add("active");
+    listContents.style.height = `${listHeight[idx]}px`;
+    if (clickable) {
+      if (list.querySelector(".btn_wrap")) {
+        list.querySelectorAll("img").forEach((el) => {
+          el.classList.add("none");
+        });
+        d.forEach((el) => {
+          el.classList.remove("none");
+        });
+      } else {
+        list.querySelectorAll("img").forEach((el) => {
+          el.classList.remove("none");
+        });
+      }
+    }
+    heightChange(displayNum, listContents, idx);
+  });
   btns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -224,24 +255,30 @@ const toggleList = (list, idx) => {
         el.classList.add("none");
       });
       if (btn.classList.contains("pc_btn")) {
+        displayNum = 1;
         d.forEach((el) => {
           el.classList.remove("none");
         });
+        listContents.style.height = `${listHeight[idx]}px`;
       } else if (btn.classList.contains("tab_btn")) {
+        displayNum = 2;
         t.forEach((el) => {
           el.classList.remove("none");
         });
+        listContents.style.height = `${listHeight[idx] + 100}px`;
       } else if (btn.classList.contains("mob_btn")) {
+        displayNum = 3;
         m.forEach((el) => {
           el.classList.remove("none");
         });
-        listHeight[idx] = listContents.clientHeight;
-        listContents.style.height = `${listHeight[idx]}px`;
+        listContents.style.height = `${listHeight[idx] + 150}px`;
       }
+      heightChange(displayNum, listContents, idx);
     });
   });
   closeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
+    clickable = true;
     list.classList.remove("active");
     listContents.style.height = `0px`;
   });
@@ -262,16 +299,14 @@ const swiper = new Swiper(".thumb_slides", {
   spaceBetween: 20,
   slidesPerView: "auto",
   disableOnInteraction: false,
-  /* on: {
+  on: {
     init: function () {
-      console.log('swiper initialized');
+      nextBtn.classList.remove(".swiper-button-lock");
+      nextBtn.classList.remove(".swiper-button-disabled");
+      nextBtn.setAttribute("aria-disabled", "false");
     },
-  }, */
+  },
 });
-/* nextBtn.classList.remove(".swiper-button-lock");
-nextBtn.setAttribute("aria-disabled", "false"); */
-
-/* const swiper = document.querySelector('.swiper').swiper; */
 
 /* #contact 배경 효과 */
 const blurs = gsap.utils.toArray(".blur");
