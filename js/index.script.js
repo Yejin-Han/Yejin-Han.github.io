@@ -21,6 +21,8 @@ const projectList = project.querySelectorAll(".list");
 const aboutTop = about.getBoundingClientRect().top;
 const profileTop = profileArea.getBoundingClientRect().top;
 const profileBottom = profileArea.getBoundingClientRect().bottom;
+/* const prevBtn = document.querySelector(".swiper-button-prev");
+const nextBtn = document.querySelector(".swiper-button-next"); */
 
 /* 초기 설정 */
 document.body.classList.add("default");
@@ -158,7 +160,7 @@ const textScroll = () => {
 /* #project main_text에 커서 갖다대면 색 반전, 크기 커짐 */
 window.addEventListener("scroll", (e) => {
   const scrollY = window.pageYOffset;
-  console.log(scrollY, aboutTop - 250, profileBottom);
+  /* console.log(scrollY, aboutTop - 250, profileBottom); */
   textScroll();
   if (
     scrollY >= aboutTop &&
@@ -200,16 +202,43 @@ title.forEach((elem) => {
   });
 });
 
-/* #projectList accordion */
+/* #projectList accordion, mediaquery button */
 let listHeight = [];
 const toggleList = (list, idx) => {
   const listContents = list.querySelector(".contents");
-  const closeBtn = list.querySelector("button");
+  const closeBtn = list.querySelector(".close_btn");
   listHeight[idx] = listContents.clientHeight;
   listContents.style.height = 0;
   list.addEventListener("click", () => {
     list.classList.add("active");
     listContents.style.height = `${listHeight[idx]}px`;
+  });
+  const btns = list.querySelectorAll(".btn");
+  const d = list.querySelectorAll(".d");
+  const t = list.querySelectorAll(".t");
+  const m = list.querySelectorAll(".m");
+  btns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      list.querySelectorAll("img").forEach((el) => {
+        el.classList.add("none");
+      });
+      if (btn.classList.contains("pc_btn")) {
+        d.forEach((el) => {
+          el.classList.remove("none");
+        });
+      } else if (btn.classList.contains("tab_btn")) {
+        t.forEach((el) => {
+          el.classList.remove("none");
+        });
+      } else if (btn.classList.contains("mob_btn")) {
+        m.forEach((el) => {
+          el.classList.remove("none");
+        });
+        listHeight[idx] = listContents.clientHeight;
+        listContents.style.height = `${listHeight[idx]}px`;
+      }
+    });
   });
   closeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -232,7 +261,16 @@ const swiper = new Swiper(".thumb_slides", {
   allowSlideNext: true,
   spaceBetween: 20,
   slidesPerView: "auto",
+  disableOnInteraction: false,
+  /* on: {
+    init: function () {
+      console.log('swiper initialized');
+    },
+  }, */
 });
+/* nextBtn.classList.remove(".swiper-button-lock");
+nextBtn.setAttribute("aria-disabled", "false"); */
+
 /* const swiper = document.querySelector('.swiper').swiper; */
 
 /* #contact 배경 효과 */

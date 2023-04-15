@@ -434,9 +434,31 @@ body::-webkit-scrollbar-track {
         box-sizing: border-box;
         transition: all 0.4s ease-out;
         overflow: hidden;
+        .project_info {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-right: 7%;
+        }
         .period {
           font-weight: 100;
           font-size: 0.875rem;
+        }
+        .btn_wrap {
+          display: flex;
+          button {
+            border: 1px solid #fff;
+            border-radius: 1rem;
+            margin-right: 0.5rem;
+            padding: 0.25rem 0.8rem;
+            color: #fff;
+            background: transparent;
+            cursor: pointer;
+          }
+          button:hover {
+            background: #fff;
+            color: #222;
+          }
         }
         .thumb_slides {
           margin-top: 1rem;
@@ -448,6 +470,9 @@ body::-webkit-scrollbar-track {
           .swiper-wrapper {
             .swiper-slide {
               width: auto;
+              img.none {
+                display: none;
+              }
             }
           }
           .swiper-button-prev,

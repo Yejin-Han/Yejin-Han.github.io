@@ -446,9 +446,31 @@ body::-webkit-scrollbar-track {
   transition: all 0.4s ease-out;
   overflow: hidden;
 }
+#project .projects > ul > .list .contents .project_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 7%;
+}
 #project .projects > ul > .list .contents .period {
   font-weight: 100;
   font-size: 0.875rem;
+}
+#project .projects > ul > .list .contents .btn_wrap {
+  display: flex;
+}
+#project .projects > ul > .list .contents .btn_wrap button {
+  border: 1px solid #fff;
+  border-radius: 1rem;
+  margin-right: 0.5rem;
+  padding: 0.25rem 0.8rem;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+}
+#project .projects > ul > .list .contents .btn_wrap button:hover {
+  background: #fff;
+  color: #222;
 }
 #project .projects > ul > .list .contents .thumb_slides {
   margin-top: 1rem;
@@ -460,6 +482,9 @@ body::-webkit-scrollbar-track {
 }
 #project .projects > ul > .list .contents .thumb_slides .swiper-wrapper .swiper-slide {
   width: auto;
+}
+#project .projects > ul > .list .contents .thumb_slides .swiper-wrapper .swiper-slide img.none {
+  display: none;
 }
 #project .projects > ul > .list .contents .thumb_slides .swiper-button-prev,
 #project .projects > ul > .list .contents .thumb_slides .swiper-rtl .swiper-button-next {
