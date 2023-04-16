@@ -1,6 +1,10 @@
 @charset "UTF-8";
 @import "default.css";
-/* $mainColor2: #d35d22; */
+/* color variable */
+/* blur variable */
+/* arrow variable */
+/* #skills icons mixin */
+/* settings */
 html,
 body {
   width: 100vw;
@@ -10,7 +14,7 @@ body {
   position: relative;
   overflow-x: hidden;
   color: #222;
-  font-family: "Pretendard Variable", "맑은 고딕", sans-serif;
+  font-family: "Pretendard Variable", "맑은 고딕", Arial, Helvetica, sans-serif;
   cursor: none;
   transition: background 0.6s ease;
 }
@@ -24,7 +28,7 @@ img {
 
 h2,
 h3 {
-  font-family: "Libre Baskerville", serif;
+  font-family: "Libre Baskerville", "Times New Roman", Times, serif;
 }
 
 body::-webkit-scrollbar {
@@ -42,13 +46,16 @@ body::-webkit-scrollbar-track {
 }
 
 ::-moz-selection {
-  background: #a7b8d8;
+  background: #cde8fa;
+  color: #222;
 }
 
 ::selection {
-  background: #a7b8d8;
+  background: #cde8fa;
+  color: #222;
 }
 
+/* cursor */
 .cursor {
   position: fixed;
   pointer-events: none;
@@ -73,6 +80,7 @@ body::-webkit-scrollbar-track {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* petal container */
 .petal_container {
   width: 100%;
   height: 100%;
@@ -91,6 +99,7 @@ body::-webkit-scrollbar-track {
   background-size: cover;
 }
 
+/* header */
 @keyframes rotate360 {
   0% {
     transform: rotate(0deg);
@@ -156,6 +165,7 @@ body::-webkit-scrollbar-track {
   color: #222;
 }
 
+/* main visual */
 #main_visual {
   width: 100vw;
   height: 100vh;
@@ -186,6 +196,7 @@ body::-webkit-scrollbar-track {
   color: #f7788a;
 }
 
+/* 나의 소개 */
 #about {
   margin: 0;
   padding-top: 20vh;
@@ -367,6 +378,7 @@ body::-webkit-scrollbar-track {
   top: 60%;
 }
 
+/* 프로젝트 소개 */
 #project #textSVG {
   fill: #222;
   position: relative;
@@ -567,6 +579,7 @@ body::-webkit-scrollbar-track {
   opacity: 1;
 }
 
+/* 연락 */
 #contact {
   width: 100vw;
   height: 50rem;
@@ -610,15 +623,140 @@ body::-webkit-scrollbar-track {
   width: 100%;
   overflow: hidden;
   display: flex;
+  font-family: "Libre Baskerville", "Times New Roman", Times, serif;
 }
 #contact .contact_wrapper .contact_title > strong {
-  font-size: 6rem;
+  font-size: 6.5rem;
   letter-spacing: -2px;
   white-space: nowrap;
   animation: 4s linear 0s infinite normal none running slideTxt;
 }
 #contact .contact_wrapper .address {
   margin-top: 4rem;
+  width: 50%;
+  font-family: "Libre Baskerville", "Times New Roman", Times, serif;
+}
+#contact .contact_wrapper .address li {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+#contact .contact_wrapper .address .the-arrow {
+  width: 1px;
+  transition: all 0.2s;
+}
+#contact .contact_wrapper .address .the-arrow.-left {
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
+#contact .contact_wrapper .address .the-arrow.-left > .shaft {
+  width: 0;
+  background-color: #7c7c7c;
+}
+#contact .contact_wrapper .address .the-arrow.-left > .shaft:before, #contact .contact_wrapper .address .the-arrow.-left > .shaft:after {
+  width: 0;
+  background-color: #7c7c7c;
+}
+#contact .contact_wrapper .address .the-arrow.-left > .shaft:before {
+  transform: rotate(0);
+}
+#contact .contact_wrapper .address .the-arrow.-left > .shaft:after {
+  transform: rotate(0);
+}
+#contact .contact_wrapper .address .the-arrow.-right {
+  top: 0px;
+}
+#contact .contact_wrapper .address .the-arrow.-right > .shaft {
+  width: 1px;
+  transition-delay: 0.2s;
+}
+#contact .contact_wrapper .address .the-arrow.-right > .shaft:before, #contact .contact_wrapper .address .the-arrow.-right > .shaft:after {
+  width: 8px;
+  transition-delay: 0.3s;
+  transition: all 0.5s;
+}
+#contact .contact_wrapper .address .the-arrow.-right > .shaft:before {
+  transform: rotate(40deg);
+}
+#contact .contact_wrapper .address .the-arrow.-right > .shaft:after {
+  transform: rotate(-40deg);
+}
+#contact .contact_wrapper .address .the-arrow > .shaft {
+  background-color: #7c7c7c;
+  display: block;
+  height: 1px;
+  position: relative;
+  transition: all 0.2s;
+  transition-delay: 0;
+  will-change: transform;
+}
+#contact .contact_wrapper .address .the-arrow > .shaft:before, #contact .contact_wrapper .address .the-arrow > .shaft:after {
+  background-color: #7c7c7c;
+  content: "";
+  display: block;
+  height: 1px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: all 0.2s;
+  transition-delay: 0s;
+}
+#contact .contact_wrapper .address .the-arrow > .shaft:before {
+  transform-origin: top right;
+}
+#contact .contact_wrapper .address .the-arrow > .shaft:after {
+  transform-origin: bottom right;
+}
+#contact .contact_wrapper .address .animated_arrow {
+  display: inline-block;
+  position: relative;
+  transition: all 0.2s;
+}
+#contact .contact_wrapper .address .animated_arrow:hover > .the-arrow.-left > .shaft {
+  width: 64px;
+  transition-delay: 0.1s;
+}
+#contact .contact_wrapper .address .animated_arrow:hover > .the-arrow.-left > .shaft:before, #contact .contact_wrapper .address .animated_arrow:hover > .the-arrow.-left > .shaft:after {
+  width: 8px;
+  transition-delay: 0.1s;
+}
+#contact .contact_wrapper .address .animated_arrow:hover > .the-arrow.-left > .shaft:before {
+  transform: rotate(40deg);
+}
+#contact .contact_wrapper .address .animated_arrow:hover > .the-arrow.-left > .shaft:after {
+  transform: rotate(-40deg);
+}
+#contact .contact_wrapper .address .animated_arrow:hover > .main {
+  transform: translateX(21px);
+  transform: translateX(84px);
+}
+#contact .contact_wrapper .address .animated_arrow:hover > .main > .the-arrow.-right > .shaft {
+  width: 0;
+  transform: translateX(200%);
+  transition-delay: 0s;
+}
+#contact .contact_wrapper .address .animated_arrow:hover > .main > .the-arrow.-right > .shaft:before, #contact .contact_wrapper .address .animated_arrow:hover > .main > .the-arrow.-right > .shaft:after {
+  width: 0;
+  transition-delay: 0s;
+  transition: all 0.1s;
+}
+#contact .contact_wrapper .address .animated_arrow:hover > .main > .the-arrow.-right > .shaft:before {
+  transform: rotate(0);
+}
+#contact .contact_wrapper .address .animated_arrow:hover > .main > .the-arrow.-right > .shaft:after {
+  transform: rotate(0);
+}
+#contact .contact_wrapper .address .animated_arrow > .main {
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+#contact .contact_wrapper .address .animated_arrow > .main > .contact_text {
+  margin-right: 20px;
+  line-height: 1;
+}
+#contact .contact_wrapper .address .animated_arrow > .main > .the-arrow {
+  position: relative;
 }
 #contact .blur {
   position: absolute;
@@ -647,6 +785,7 @@ body::-webkit-scrollbar-track {
   z-index: 102;
 }
 
+/* footer */
 #footer {
   width: 100vw;
   position: absolute;
@@ -654,6 +793,36 @@ body::-webkit-scrollbar-track {
   bottom: 0;
   z-index: 1000;
   padding-bottom: 1.4rem;
+}
+#footer .scroll_top {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 7px;
+  border: 2px solid #c3e5f5;
+  background-color: #c3e5f5;
+  color: #fff;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+  visibility: hidden;
+  opacity: 0;
+}
+#footer .scroll_top i {
+  font-weight: 700;
+  font-size: 2rem;
+}
+#footer .scroll_top:hover {
+  border-color: #222;
+  background-color: #fcf2d6;
+  color: #222;
+}
+#footer .scroll_top.show {
+  visibility: visible;
+  opacity: 1;
 }
 #footer .copy {
   text-align: center;

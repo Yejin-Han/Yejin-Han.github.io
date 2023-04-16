@@ -1,22 +1,36 @@
 @import "default.css";
 
+/* color variable */
 $mainColor: #f7e2a7;
-/* $mainColor2: #d35d22; */
 $pointColor: #f7788a;
+$pointColor2: #c3e5f5;
 $contactColor: #fcf2d6;
+$backColor: #222;
+$arrowColor: #7c7c7c;
 
+/* blur variable */
 $blurSize1: clamp(160px, 26vw, 26vw);
 $blurSize2: clamp(140px, 15vw, 15vw);
 $blurSize3: clamp(100px, 10vw, 10vw);
 $blurAmount: clamp(40px, 5vw, 90px);
 $blurAmount2: clamp(30px, 4.25vw, 67px);
 
+/* arrow variable */
+$text-arrow-space: 20px;
+$shaft-width: 1px;
+$newshaft-width: 64px;
+$shaft-thickness: 1px;
+$arrow-head-width: 8px;
+$arrow-head-thickness: $shaft-thickness;
+
+/* #skills icons mixin */
 @mixin setLocation($width, $left, $top) {
   width: $width;
   left: $left;
   top: $top;
 }
 
+/* settings */
 html,
 body {
   width: 100vw;
@@ -24,8 +38,8 @@ body {
 body {
   position: relative;
   overflow-x: hidden;
-  color: #222;
-  font-family: "Pretendard Variable", "맑은 고딕", sans-serif;
+  color: $backColor;
+  font-family: "Pretendard Variable", "맑은 고딕", Arial, Helvetica, sans-serif;
   cursor: none;
   transition: background 0.6s ease;
   &.default {
@@ -42,7 +56,7 @@ img {
 }
 h2,
 h3 {
-  font-family: "Libre Baskerville", serif;
+  font-family: "Libre Baskerville", "Times New Roman", Times, serif;
 }
 
 body::-webkit-scrollbar {
@@ -57,9 +71,11 @@ body::-webkit-scrollbar-track {
   background: #fff;
 }
 ::selection {
-  background: #a7b8d8;
+  background: #cde8fa;
+  color: $backColor;
 }
 
+/* cursor */
 .cursor {
   position: fixed;
   pointer-events: none;
@@ -85,6 +101,7 @@ body::-webkit-scrollbar-track {
   }
 }
 
+/* petal container */
 .petal_container {
   width: 100%;
   height: 100%;
@@ -103,6 +120,7 @@ body::-webkit-scrollbar-track {
   }
 }
 
+/* header */
 @keyframes rotate360 {
   0% {
     transform: rotate(0deg);
@@ -161,11 +179,13 @@ body::-webkit-scrollbar-track {
         display: none;
       }
       a {
-        color: #222;
+        color: $backColor;
       }
     }
   }
 }
+
+/* main visual */
 #main_visual {
   width: 100vw;
   height: 100vh;
@@ -195,6 +215,8 @@ body::-webkit-scrollbar-track {
     }
   }
 }
+
+/* 나의 소개 */
 #about {
   margin: 0;
   padding-top: 20vh;
@@ -253,7 +275,7 @@ body::-webkit-scrollbar-track {
     li {
       margin: 0 5rem 0 2rem;
       padding: 0 0 4rem 3rem;
-      border-left: 1px solid #222;
+      border-left: 1px solid $backColor;
       position: relative;
       &:last-child {
         padding-bottom: 2rem;
@@ -265,7 +287,7 @@ body::-webkit-scrollbar-track {
         height: 0.6rem;
         border-radius: 50%;
         background: #fff;
-        border: 1px solid #222;
+        border: 1px solid $backColor;
         position: absolute;
         left: -0.35rem;
         top: 0;
@@ -360,9 +382,11 @@ body::-webkit-scrollbar-track {
     }
   }
 }
+
+/* 프로젝트 소개 */
 #project {
   #textSVG {
-    fill: #222;
+    fill: $backColor;
     position: relative;
     width: 110%;
     top: 0;
@@ -457,7 +481,7 @@ body::-webkit-scrollbar-track {
           }
           button:hover {
             background: #fff;
-            color: #222;
+            color: $backColor;
           }
         }
         .thumb_slides {
@@ -521,7 +545,7 @@ body::-webkit-scrollbar-track {
             line-height: 2rem;
             padding: 0 1rem;
             background: #fff;
-            color: #222;
+            color: $backColor;
             font-size: 1.2rem;
             letter-spacing: -1px;
             margin-right: 1rem;
@@ -561,6 +585,8 @@ body::-webkit-scrollbar-track {
     }
   }
 }
+
+/* 연락 */
 #contact {
   width: 100vw;
   height: 50rem;
@@ -595,15 +621,16 @@ body::-webkit-scrollbar-track {
       }
     }
     a {
-      color: #222;
+      color: $backColor;
     }
     .contact_title {
       margin-top: 3rem;
       width: 100%;
       overflow: hidden;
       display: flex;
+      font-family: "Libre Baskerville", "Times New Roman", Times, serif;
       > strong {
-        font-size: 6rem;
+        font-size: 6.5rem;
         letter-spacing: -2px;
         white-space: nowrap;
         animation: 4s linear 0s infinite normal none running slideTxt;
@@ -611,6 +638,145 @@ body::-webkit-scrollbar-track {
     }
     .address {
       margin-top: 4rem;
+      width: 50%;
+      font-family: "Libre Baskerville", "Times New Roman", Times, serif;
+      li {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      // the-arrow
+      .the-arrow {
+        width: $shaft-width;
+        transition: all 0.2s;
+        &.-left {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          > .shaft {
+            width: 0;
+            background-color: $arrowColor;
+            &:before,
+            &:after {
+              width: 0;
+              background-color: $arrowColor;
+            }
+            &:before {
+              transform: rotate(0);
+            }
+            &:after {
+              transform: rotate(0);
+            }
+          }
+        }
+        &.-right {
+          top: 0px;
+          > .shaft {
+            width: $shaft-width;
+            transition-delay: 0.2s;
+            &:before,
+            &:after {
+              width: $arrow-head-width;
+              transition-delay: 0.3s;
+              transition: all 0.5s;
+            }
+            &:before {
+              transform: rotate(40deg);
+            }
+            &:after {
+              transform: rotate(-40deg);
+            }
+          }
+        }
+        > .shaft {
+          background-color: $arrowColor;
+          display: block;
+          height: $shaft-thickness;
+          position: relative;
+          transition: all 0.2s;
+          transition-delay: 0;
+          will-change: transform;
+          &:before,
+          &:after {
+            background-color: $arrowColor;
+            content: "";
+            display: block;
+            height: $arrow-head-thickness;
+            position: absolute;
+            top: 0;
+            right: 0;
+            transition: all 0.2s;
+            transition-delay: 0s;
+          }
+          &:before {
+            transform-origin: top right;
+          }
+          &:after {
+            transform-origin: bottom right;
+          }
+        }
+      }
+
+      //animated arrow
+      .animated_arrow {
+        display: inline-block;
+        position: relative;
+        transition: all 0.2s;
+        &:hover {
+          > .the-arrow.-left {
+            > .shaft {
+              width: $newshaft-width;
+              transition-delay: 0.1s;
+              &:before,
+              &:after {
+                width: $arrow-head-width;
+                transition-delay: 0.1s;
+              }
+              &:before {
+                transform: rotate(40deg);
+              }
+              &:after {
+                transform: rotate(-40deg);
+              }
+            }
+          }
+          > .main {
+            transform: translateX($shaft-width + $text-arrow-space);
+            transform: translateX($newshaft-width + $text-arrow-space);
+            > .the-arrow.-right {
+              > .shaft {
+                width: 0;
+                transform: translateX(200%);
+                transition-delay: 0s;
+                &:before,
+                &:after {
+                  width: 0;
+                  transition-delay: 0s;
+                  transition: all 0.1s;
+                }
+                &:before {
+                  transform: rotate(0);
+                }
+                &:after {
+                  transform: rotate(0);
+                }
+              }
+            }
+          }
+        }
+        > .main {
+          display: flex;
+          align-items: center;
+          transition: all 0.2s;
+          > .contact_text {
+            margin-right: $text-arrow-space;
+            line-height: 1;
+          }
+          > .the-arrow {
+            position: relative;
+          }
+        }
+      }
     }
   }
   .blur {
@@ -640,6 +806,8 @@ body::-webkit-scrollbar-track {
     }
   }
 }
+
+/* footer */
 #footer {
   width: 100vw;
   position: absolute;
@@ -647,6 +815,36 @@ body::-webkit-scrollbar-track {
   bottom: 0;
   z-index: 1000;
   padding-bottom: 1.4rem;
+  .scroll_top {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 7px;
+    border: 2px solid $pointColor2;
+    background-color: $pointColor2;
+    color: #fff;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+    visibility: hidden;
+    opacity: 0;
+    i {
+      font-weight: 700;
+      font-size: 2rem;
+    }
+    &:hover {
+      border-color: $backColor;
+      background-color: $contactColor;
+      color: $backColor;
+    }
+    &.show {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
   .copy {
     text-align: center;
   }

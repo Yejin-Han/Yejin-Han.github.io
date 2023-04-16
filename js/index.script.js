@@ -23,6 +23,7 @@ const profileTop = profileArea.getBoundingClientRect().top;
 const profileBottom = profileArea.getBoundingClientRect().bottom;
 const prevBtn = document.querySelector(".swiper-button-prev");
 const nextBtn = document.querySelector(".swiper-button-next");
+const scrollTopBtn = document.querySelector(".scroll_top");
 
 /* 초기 설정 */
 document.body.classList.add("default");
@@ -162,6 +163,7 @@ window.addEventListener("scroll", (e) => {
   const scrollY = window.pageYOffset;
   /* console.log(scrollY, aboutTop - 250, profileBottom); */
   textScroll();
+  scrollTop();
   if (
     scrollY >= aboutTop &&
     scrollY < profileBottom - profileImg.clientHeight - 200
@@ -356,4 +358,18 @@ blurs.forEach((blur) => {
   moveX(blur, 1);
   moveY(blur, -1);
   rotate(blur, 1);
+});
+
+/* back to top button */
+const scrollTop = () => {
+  if (window.scrollY > 300) {
+    scrollTopBtn.classList.add("show");
+  } else {
+    scrollTopBtn.classList.remove("show");
+  }
+};
+
+scrollTopBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
