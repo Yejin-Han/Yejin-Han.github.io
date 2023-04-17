@@ -475,13 +475,12 @@ body::-webkit-scrollbar-track {
             border-radius: 1rem;
             margin-right: 0.5rem;
             padding: 0.25rem 0.8rem;
-            color: #fff;
-            background: transparent;
+            background: #fff;
             cursor: pointer;
           }
           button:hover {
-            background: #fff;
-            color: $backColor;
+            background: transparent;
+            color: #fff;
           }
         }
         .thumb_slides {
@@ -549,6 +548,9 @@ body::-webkit-scrollbar-track {
             font-size: 1.2rem;
             letter-spacing: -1px;
             margin-right: 1rem;
+            &:hover {
+              box-shadow: 5px 5px 10px -5px inset;
+            }
           }
           .qr_wrap {
             position: absolute;
@@ -566,13 +568,6 @@ body::-webkit-scrollbar-track {
               text-align: center;
               font-size: 0.875rem;
             }
-          }
-          iframe {
-            /* display: none; */
-            /* position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%); */
           }
         }
       }

@@ -476,13 +476,12 @@ body::-webkit-scrollbar-track {
   border-radius: 1rem;
   margin-right: 0.5rem;
   padding: 0.25rem 0.8rem;
-  color: #fff;
-  background: transparent;
+  background: #fff;
   cursor: pointer;
 }
 #project .projects > ul > .list .contents .btn_wrap button:hover {
-  background: #fff;
-  color: #222;
+  background: transparent;
+  color: #fff;
 }
 #project .projects > ul > .list .contents .thumb_slides {
   margin-top: 1rem;
@@ -550,6 +549,9 @@ body::-webkit-scrollbar-track {
   letter-spacing: -1px;
   margin-right: 1rem;
 }
+#project .projects > ul > .list .contents .direct_btns a:hover {
+  box-shadow: 5px 5px 10px -5px inset;
+}
 #project .projects > ul > .list .contents .direct_btns .qr_wrap {
   position: absolute;
   right: 3%;
@@ -566,13 +568,6 @@ body::-webkit-scrollbar-track {
   display: block;
   text-align: center;
   font-size: 0.875rem;
-}
-#project .projects > ul > .list .contents .direct_btns iframe {
-  /* display: none; */
-  /* position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%); */
 }
 #project .projects > ul > .list.active button {
   display: block;

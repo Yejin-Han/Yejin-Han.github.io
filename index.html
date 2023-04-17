@@ -323,14 +323,12 @@
                   class="github"
                   >프로젝트 설명(Github)</a
                 >
-                <a href="#" target="_blank" class="mockup">시안</a>
-                <iframe
-                  style="border: 1px solid rgba(0, 0, 0, 0.1)"
-                  width="800"
-                  height="450"
-                  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FoSgnCdaC4QjLhFv5yceWrQ%2FPortfolio1%3Fnode-id%3D0%253A1%26t%3DusKmd9X635feeneA-1"
-                  allowfullscreen
-                ></iframe>
+                <a
+                  href="https://www.figma.com/file/oSgnCdaC4QjLhFv5yceWrQ/Portfolio1?node-id=0%3A1&t=0fKloHvfu167bQeN-1"
+                  target="_blank"
+                  class="mockup"
+                  >시안</a
+                >
               </div>
             </div>
           </li>
@@ -422,7 +420,12 @@
                   class="github"
                   >프로젝트 설명(Github)</a
                 >
-                <a href="#" target="_blank" class="mockup">시안</a>
+                <a
+                  href="https://www.figma.com/file/NinxMjYCB7fo9GOLgnz9ZU/game1?node-id=0%3A1&t=m75RYusxhkENqqxb-1"
+                  target="_blank"
+                  class="mockup"
+                  >시안</a
+                >
                 <div class="qr_wrap">
                   <img src="img/zombie_game_QR.jpg" />
                   <span>모바일로 바로<br />이동해보세요!</span>
@@ -485,7 +488,12 @@
                   class="github"
                   >프로젝트 설명(Github)</a
                 >
-                <a href="#" target="_blank" class="mockup">시안</a>
+                <a
+                  href="https://www.figma.com/file/IZsvvFrAUsR0Yy6ssdnGfy/Portfolio2?t=m75RYusxhkENqqxb-1"
+                  target="_blank"
+                  class="mockup"
+                  >시안</a
+                >
               </div>
             </div>
           </li>
@@ -758,14 +766,14 @@
           </li>
           <li class="list">
             <div class="title_wrap">
-              <h4 class="main-text">팀 프로젝트</h4>
+              <h4 class="main-text">팀 프로젝트 PUR</h4>
               <button type="button" class="close_btn">
                 <i class="xi-close-square"></i>
               </button>
             </div>
             <div class="contents">
               <span class="period"
-                >2023.02.04. - 2023.03.18. (1차 완료, 일단 중지 중)</span
+                >2023.02.04. - 2023.03.18. (1차 완료, 후일 재시작)</span
               >
               <div class="thumb_slides">
                 <div class="thumb_slides">
@@ -833,18 +841,38 @@
                   리뷰를 남길 수 있는 피드백 페이지를 갖추었습니다.<br />
                   각 사이드 프로젝트 별 더 자세한 정보는 아래 프로젝트
                   설명(Github)에서 확인하실 수 있습니다.<br />
-                  담당 : 메모, 달력, 시계, 환율계산기, a (강지연) // 그림판,
-                  계산기, 날씨, 가계부, 피드백페이지 (한예진)
+                  담당 : 메모, 달력, 시계(준비중), 환율계산기, 미정(준비중) -
+                  강지연 // 그림판, 계산기, 세계날씨, 가계부(준비중),
+                  피드백페이지(준비중) - 한예진<br />
+                  제가 작성한 부분에 대해서만 아래 기술하겠습니다.
                 </p>
                 <ul>
                   <li>
                     React와 React-Router를 이용하여 Single Page Application을
                     구현하였습니다.
                   </li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
+                  <li>
+                    scss로 스타일하였으며, 기본적인 형식 등을 변수로써 통일하여
+                    사용하였습니다.
+                  </li>
+                  <li>
+                    그림판 : 펜 굵기에 따른 일반 펜, 지우개, 전체 페인트통을
+                    이용한 그림그리기, 이미지 불러오기, 이미지로 저장하기, 전체
+                    지우기 기능이 구현되어 있습니다.
+                  </li>
+                  <li>
+                    계산기 : Context를 이용하여 공통으로 여러 번 사용하는
+                    state들을 관리하고, 그 state들로 각 버튼마다 함수를 만들어
+                    버튼 클릭의 과정과 계산 결과가 Screen에 나타나도록
+                    하였습니다.
+                  </li>
+                  <li>
+                    세계날씨 : geoDB의 API를 호출하여 React의 AsyncPaginate로
+                    세계의 도시를 검색할 수 있도록 하였으며, 이후
+                    openweathermap의 API를 호출하여 현재 날씨와 날씨 예측(3시간
+                    단위로 직전 3시간 + 24시간)한 부분을 React의 Accordion을
+                    통해 보여줍니다.
+                  </li>
                 </ul>
               </div>
               <div class="direct_btns">
