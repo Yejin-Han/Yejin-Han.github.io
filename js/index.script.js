@@ -84,6 +84,12 @@ for (i = 0; i < total; i++) {
   fall(div);
 }
 
+/* home 버튼 클릭시 새로고침 */
+home.addEventListener("click", () => {
+  window.scrollTo({ top: 0 });
+  window.location.reload();
+});
+
 /* nav 클릭 시 해당 섹션 위치로 이동하는 애니메이션 */
 const topPos = [];
 sects.forEach((sect) => {
@@ -96,9 +102,6 @@ window.addEventListener("resize", () => {
   });
 });
 menus.forEach((menu, idx) => {
-  home.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
   menu.addEventListener("click", () => {
     window.scrollTo({ top: topPos[idx + 1], behavior: "smooth" });
   });
@@ -108,7 +111,6 @@ menus.forEach((menu, idx) => {
 heading.forEach((elem) => {
   let splitTxt = elem.innerText.split("").join("</span><span>");
   splitTxt = "<span>" + splitTxt + "</span>";
-  console.log(splitTxt);
   elem.innerHTML = splitTxt;
 });
 

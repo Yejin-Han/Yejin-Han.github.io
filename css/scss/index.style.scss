@@ -34,10 +34,10 @@ $arrow-head-thickness: $shaft-thickness;
 html,
 body {
   width: 100vw;
+  overflow-x: hidden;
 }
 body {
   position: relative;
-  overflow-x: hidden;
   color: $backColor;
   font-family: "Pretendard Variable", "맑은 고딕", Arial, Helvetica, sans-serif;
   cursor: none;
@@ -103,9 +103,9 @@ body::-webkit-scrollbar-track {
 
 /* petal container */
 .petal_container {
-  width: 100%;
-  height: 100%;
-  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
   left: 0;
   top: 0;
   .petal {
@@ -135,6 +135,7 @@ body::-webkit-scrollbar-track {
 }
 #header {
   width: 100%;
+  height: 2rem;
   position: fixed;
   left: 0;
   top: 0;
@@ -192,6 +193,7 @@ body::-webkit-scrollbar-track {
   position: relative;
   left: 0;
   top: 0;
+  z-index: -1;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
